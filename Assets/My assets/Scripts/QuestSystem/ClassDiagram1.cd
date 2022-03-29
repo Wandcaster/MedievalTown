@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EnemyManager" Collapsed="true">
+    <Position X="10.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACEAAAAACQAAAAAIAEAAQAIBEAAAAAAQAAgCAQAAEA=</HashCode>
+      <FileName>Assets\My assets\Enemy\EnemyManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AQuestData" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAEAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\QuestData\AQuestData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KillEnemyQuestData" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\QuestData\KillEnemyQuestData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RepeatableQuest" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAABAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\QuestData\RepeatableQuest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoryQuestData" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\QuestData\StoryQuestData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestManagerData" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAABAAAAAIAAIIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\QuestManager\QuestManagerData\QuestManagerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestManager" Collapsed="true">
+    <Position X="15" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAFAAAACAAAAAAAAgCIAAQAAAAEAAAAQAQAAAAAAEA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\QuestManager\QuestManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollectItemQuest" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\QuestSystem\CollectItemQuest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AcceptQuestSpot" Collapsed="true">
+    <Position X="15" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\AcceptQuestSpot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletSpell" Collapsed="true">
+    <Position X="8.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAgAAAAAAQABEAAAACAQAQACAQAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\BulletSpell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Die" Collapsed="true">
+    <Position X="20" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\Die.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyController" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEA0AIAIECAAAABoBAAQEIBBIQAEIAAAQAAQAFAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\EnemyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyModel" Collapsed="true">
+    <Position X="10.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAIAAAAAAAABAAAAAIAAAAAAAAAABAQAEAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\EnemyModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GetHitBehaviour" Collapsed="true">
+    <Position X="20" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\GetHitBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="idleProtectedBehaviour" Collapsed="true">
+    <Position X="20" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\idleProtectedBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OneHandedWalk" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAABAAIAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\OneHandedWalk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="openMenu" Collapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\openMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Patrolling" Collapsed="true">
+    <Position X="20" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAIAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\Patrolling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spell" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQQCAAAAAAgAAAAEAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\Spell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmoothTurn" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAACAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\SmoothTurn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="smoothLocomotion" Collapsed="true">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAACAAAAAAAAAAAAAAAAAAAQABAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\smoothLocomotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpellController" Collapsed="true">
+    <Position X="17.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAACQAAAAAAAAAAACAAAASAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\SpellController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIActivation" Collapsed="true">
+    <Position X="13" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAgAAAAAAUCAAAAABAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\UIActivation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UtilitySpell" Collapsed="true">
+    <Position X="6" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\UtilitySpell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Wand" Collapsed="true">
+    <Position X="17.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAACAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\Wand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Weapon" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="spellData" Collapsed="true">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQCAAAAAAgAAAAAAAABIAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Spells\spellData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonController" Collapsed="true">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\UI\Scripts\ButtonController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ButtonControllerMap" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\UI\Scripts\ButtonControllerMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenPanel" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAIAAAAAAAAAABAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\UI\Scripts\OpenPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SlotController" Collapsed="true">
+    <Position X="13" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAQAAAQAAAgAAYBAAIAAQAAAAAEAAAA=</HashCode>
+      <FileName>Assets\My assets\UI\Scripts\SlotController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="StatusWindow" Collapsed="true">
+    <Position X="13" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAACAAAAAAAAAAAIAAAAgEAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\StatusWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.ScriptableObject" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UnityEngine.StateMachineBehaviour" Collapsed="true">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="IWandSpell" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\My assets\Scripts\IWandSpell.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

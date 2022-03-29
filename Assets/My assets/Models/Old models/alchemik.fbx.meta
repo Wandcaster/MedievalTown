@@ -1,0 +1,162 @@
+fileFormatVersion: 2
+guid: 2164a8d837edb5b4491ca23456103b2f
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: 8655263644358651094
+    second: Kula|KulaAction.001
+  - first:
+      74: 6385049360591372874
+    second: Kula.001|KulaAction.001
+  - first:
+      74: -6573050385710401911
+    second: Kula.002|KulaAction.001
+  - first:
+      74: -5670748322355414765
+    second: Kula.005|KulaAction.001
+  - first:
+      74: 5337077273396364768
+    second: Kula.004|KulaAction.001
+  - first:
+      74: 2667010907829808760
+    second: Kula.003|KulaAction.001
+  - first:
+      74: 6354118987841949250
+    second: Kula.008|KulaAction.001
+  - first:
+      74: 976456834042146364
+    second: Kula.007|KulaAction.001
+  - first:
+      74: 850384654523127087
+    second: Kula.006|KulaAction.001
+  - first:
+      74: -7717321953700643589
+    second: Kula.011|KulaAction.001
+  - first:
+      74: 2226809603091068679
+    second: Kula.010|KulaAction.001
+  - first:
+      74: 1155321157049900126
+    second: Kula.009|KulaAction.001
+  - first:
+      74: 4908638798383283795
+    second: Kula.012|KulaAction.001
+  - first:
+      74: 332732252326786691
+    second: Kula.015|KulaAction.001
+  - first:
+      74: -8698462939677306364
+    second: Kula.014|KulaAction.001
+  - first:
+      74: 1955281814487816502
+    second: Kula.013|KulaAction.001
+  - first:
+      74: 8885992161550499348
+    second: Kula.017|KulaAction.001
+  - first:
+      74: -3432369094457616439
+    second: Kula.016|KulaAction.001
+  - first:
+      74: 7839094556288051901
+    second: Kula.019|KulaAction.001
+  - first:
+      74: -1692301530308662070
+    second: Kula.018|KulaAction.001
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.378
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.378
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
