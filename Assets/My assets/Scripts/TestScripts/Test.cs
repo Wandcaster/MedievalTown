@@ -5,13 +5,18 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     [SerializeField]
-    private GameObject enemyToRespawn;
-
-    public IQuest quest;
+    private int force;
     // Start is called before the first frame update
     void Start()
     {
        
+    }
+
+    private IEnumerator DisableCollider()
+    {
+        GetComponent<MeshCollider>().enabled = false;
+        yield return new WaitForSeconds(0.5F);
+        GetComponent<MeshCollider>().enabled = true;
     }
 
 
@@ -19,13 +24,14 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            EnemyManager.Instance.Respawn(7, 1, transform.position, 10, enemyToRespawn);
+            GetComponent<Rigidbody>().isKinematic = false;
+            StartCoroutine(DisableCollider());
+            GetComponent<Rigidbody>().AddForce(transform.up * force);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            QuestManager.Instance.FillQuestBoard();
-        }
-        
+
+        }        
     }
 
 }

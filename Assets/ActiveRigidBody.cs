@@ -7,28 +7,30 @@ using Valve.VR.InteractionSystem;
 public class ActiveRigidBody : MonoBehaviour
 {
     [SerializeField]
-    private int velocityToBreak = 1;
-
+    private float velocityToBreak = 1;
     [SerializeField]
-    private int Force = 100;
-    private float VelocityOfObject = 0;
-    private bool SingleTime = true;
-    public List<GameObject> neighbors = new List<GameObject>();
+    private int force = 100;
+    [SerializeField]
+    private int destroyTime = 4;
+    private float velocityOfObject = 0;
+    private bool oneTime = true;
+    private List<GameObject> neighbors = new List<GameObject>();
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Rigidbody>() != null && SingleTime && collision.gameObject.tag.Equals("MiningTool"))
+        if (oneTime & collision.gameObject.GetComponent<Rigidbody>() != null & collision.gameObject.tag.Equals("MiningTool"))
         {
-            VelocityOfObject = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-            Debug.Log(VelocityOfObject);
-            if (VelocityOfObject > velocityToBreak)
+            velocityOfObject = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
+            Debug.Log(velocityOfObject);
+            if (velocityOfObject > velocityToBreak)
             {
                 GetComponent<Rigidbody>().isKinematic = false;
-                Vector3 ForceToAdd = (transform.position - collision.transform.position).normalized * Force;
-                GetComponent<Rigidbody>().AddForce(ForceToAdd);
-                SingleTime = false;
+                Vector3 forceToAdd = (collision.transform.position- transform.position).normalized * force;
+                StartCoroutine(DisableCollider());
+                GetComponent<Rigidbody>().AddForce(forceToAdd);
+                oneTime = false;
                 ActiveNeighbors();
-                Destroy(gameObject, 4);
+                Destroy(gameObject, destroyTime);
             }
         }
     }
@@ -42,7 +44,7 @@ public class ActiveRigidBody : MonoBehaviour
         {
             if(item!=null)
             {
-                if (item.GetComponent<ActiveRigidBody>().SingleTime)
+                if (item.GetComponent<ActiveRigidBody>().oneTime)
                 {
                     item.gameObject.GetComponent<MeshRenderer>().enabled = true;
                     item.gameObject.GetComponent<MeshCollider>().enabled = true;
@@ -50,6 +52,12 @@ public class ActiveRigidBody : MonoBehaviour
             }            
         }
     }
-    
+
+    private IEnumerator DisableCollider()
+    {
+        GetComponent<MeshCollider>().enabled = false;
+        yield return new WaitForSeconds(0.5F);
+        GetComponent<MeshCollider>().enabled = true;
+    }
 
 }
