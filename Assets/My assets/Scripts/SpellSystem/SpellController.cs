@@ -27,11 +27,11 @@ public class SpellController : MonoBehaviour
         
         if (wand.interactable != null && wand.interactable.attachedToHand != null)
         {
-            Debug.Log("Trzymana ró¿d¿ka ");
             if (gesturecompletiondata.similarity > 0.5f)
             {
                 if (spells.TryGetValue(gesturecompletiondata.gestureName, out value))
                 {
+                    Debug.Log(gesturecompletiondata.gestureName);
                     value.CastSpell(wand);
                 }
             }

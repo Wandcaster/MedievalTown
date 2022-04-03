@@ -24,9 +24,7 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-            StartCoroutine(DisableCollider());
-            GetComponent<Rigidbody>().AddForce(transform.up * force);
+
         }
         if (Input.GetKeyDown(KeyCode.X))
         {

@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71f55ee887191f4fbf3550f1b9ae89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellData: {fileID: 11400000, guid: f3eb3da6bd6f3e946a564fe9cb3d135d, type: 2}
+  spellData: {fileID: 11400000, guid: ac8070662e01e914182c0aa0bff0e991, type: 2}
   velocity: 800
   leftTriggerButton:
     actionPath: /actions/default/in/TriggerLeft

@@ -10,7 +10,6 @@ public class RotateAround : MonoBehaviour
     private float angle = 20;
     [SerializeField]
     private Vector3 axis;
-    bool a;
     // Start is called before the first frame update
     void Start()
     {
