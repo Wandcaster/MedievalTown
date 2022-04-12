@@ -6,15 +6,7 @@ using Valve.VR;
 
 public class ForceSpell : Spell, IWandSpell
 {
-    [SerializeField]
-    private SteamVR_Action_Single leftTriggerButton;
-    [SerializeField]
-    private SteamVR_Action_Single rightTriggerButton;
-    [SerializeField]
-    private SteamVR_Input_Sources handType;
-
     private GameObject temp;
-
     [SerializeField]
     private Vector3 spellOffset;
 
@@ -26,5 +18,13 @@ public class ForceSpell : Spell, IWandSpell
         temp.SetActive(true);
         Destroy(temp, spellData.lifeTime);
     }
-
+    override
+    public void CastSpell(GameObject tip)
+    {
+        Debug.Log("Rozpoznano zaklencie"+ tip.transform.rotation.eulerAngles);
+        temp = Instantiate(gameObject, tip.transform.position + spellOffset,Quaternion.Euler(tip.transform.eulerAngles+new Vector3(30,0,0)));
+        temp.transform.SetParent(null);
+        temp.SetActive(true);
+        Destroy(temp, spellData.lifeTime);
+    }
 }

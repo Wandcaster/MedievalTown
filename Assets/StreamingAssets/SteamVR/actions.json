@@ -13,7 +13,7 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/GrabGrip",
+      "name": "/actions/default/in/GrabGripLeft",
       "type": "boolean"
     },
     {
@@ -55,6 +55,11 @@
     {
       "name": "/actions/default/in/TriggerRight",
       "type": "vector1"
+    },
+    {
+      "name": "/actions/default/in/GrabGripRight",
+      "type": "boolean",
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/out/Haptic",
@@ -165,7 +170,6 @@
   "localization": [
     {
       "language_tag": "en_US",
-      "/actions/default/in/GrabGrip": "Grab Grip",
       "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/HeadsetOnHead": "Headset on head (proximity sensor)",
       "/actions/default/in/InteractUI": "Interact With UI",

@@ -69,11 +69,13 @@
  */
 
 using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 /// <summary>
 /// Data regarding the identified gesture.
@@ -104,7 +106,7 @@ public class GestureCompletionData
         /// <summary>
         /// Index of the side (left or right) of the hand that performed the gesture part.
         /// </summary>
-        public enum Side { Left=0, Right=1 };
+        public enum Side { Left = 0, Right = 1 };
         /// <summary>
         /// Which side (hand) performed this gesture part.
         /// </summary>
@@ -161,7 +163,8 @@ public class Mivry : MonoBehaviour
     /// Type of input to use to trigger the start/end of a gesture.
     /// </summary>
     [System.Serializable]
-    public enum InputType {
+    public enum InputType
+    {
         Axis,
         Button,
         Key
@@ -282,6 +285,11 @@ public class Mivry : MonoBehaviour
         // In this case, we can load the gesture database file from the streamingAssets folder.
         string GesturesFilePath = Application.streamingAssetsPath;
 #endif
+
+        if (LeftTriggerInputType == InputType.Button)
+        {
+            StartCoroutine(GetFingersTips());
+        }
         GesturesFilePath = GesturesFilePath + "/" + GestureDatabaseFile;
         // try to figure out if this is a gesture recognition or gesture combinations file
         gr = new GestureRecognition();
@@ -319,6 +327,9 @@ public class Mivry : MonoBehaviour
         }
         gc = null;
         Debug.LogError("[MiVRy] Failed to load gesture recognition database file: " + GestureRecognition.getErrorMessage(ret));
+
+
+
     }
     [SerializeField]
     private SteamVR_Action_Single leftTriggerButton;
@@ -326,36 +337,45 @@ public class Mivry : MonoBehaviour
     private SteamVR_Action_Single rightTriggerButton;
     [SerializeField]
     private SteamVR_Input_Sources handType;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean leftGripButton;
+    [SerializeField]
+    private SteamVR_Action_Boolean rightGripButton;
+    [SerializeField]
+    private SteamVR_Input_Sources handTypeForGrip;
     /// <summary>
     /// Unity update function.
     /// </summary>
     void Update()
     {
         float leftTrigger = 0.0f;
-        if (LeftTriggerInput != null && LeftTriggerInput.Length > 0) {
+        if (LeftTriggerInput != null && LeftTriggerInput.Length > 0)
+        {
             switch (LeftTriggerInputType)
             {
                 case InputType.Axis:
                     leftTrigger = leftTriggerButton.GetAxis(handType);
                     break;
                 case InputType.Button:
-                    leftTrigger = Input.GetButton(LeftTriggerInput) ? 1 : 0;
+                    leftTrigger = leftGripButton.GetState(handType) ? 1 : 0;
                     break;
                 case InputType.Key:
                     leftTrigger = Input.GetKey(LeftTriggerInput) ? 1 : 0;
                     break;
             }
         }
-            
+
         float rightTrigger = 0.0f;
-        if (RightTriggerInput != null && RightTriggerInput.Length > 0) {
+        if (RightTriggerInput != null && RightTriggerInput.Length > 0)
+        {
             switch (RightTriggerInputType)
             {
                 case InputType.Axis:
                     rightTrigger = rightTriggerButton.GetAxis(handType);
                     break;
                 case InputType.Button:
-                    rightTrigger = Input.GetButton(RightTriggerInput) ? 1 : 0;
+                    rightTrigger = rightGripButton.GetState(handType) ? 1 : 0;
                     break;
                 case InputType.Key:
                     rightTrigger = Input.GetKey(RightTriggerInput) ? 1 : 0;
@@ -366,7 +386,8 @@ public class Mivry : MonoBehaviour
         if (gr != null)
         {
             this.UpdateGR(leftTrigger, rightTrigger);
-        } else if (gc != null)
+        }
+        else if (gc != null)
         {
             this.UpdateGC(leftTrigger, rightTrigger);
         }
@@ -377,7 +398,7 @@ public class Mivry : MonoBehaviour
     /// Update function for one-handed gesture recognition
     /// </summary>
     void UpdateGR(float leftTrigger, float rightTrigger)
-    {   
+    {
         if (LeftHandActive == false && RightHandActive == false)
         {
             if (leftTrigger > LeftTriggerPressure)
@@ -387,7 +408,8 @@ public class Mivry : MonoBehaviour
             else if (rightTrigger > RightTriggerPressure)
             {
                 RightHandActive = true;
-            } else
+            }
+            else
             {
                 return; // neither button pressed: nothing to do
             }
@@ -460,7 +482,8 @@ public class Mivry : MonoBehaviour
                     (int)GestureCompletionData.Part.Side.Left,
                     LeftHand.transform.position,
                     LeftHand.transform.rotation);
-            } else
+            }
+            else
             {
                 GestureCompletionData.Part part = null;
                 foreach (var partK in data.parts)
@@ -493,7 +516,7 @@ public class Mivry : MonoBehaviour
         }
         if (RightHandActive == true)
         {
-            if (rightTrigger > RightTriggerPressure*0.9f)
+            if (rightTrigger > RightTriggerPressure * 0.9f)
             {
                 gc.contdStrokeQ(
                     (int)GestureCompletionData.Part.Side.Right,
@@ -529,6 +552,18 @@ public class Mivry : MonoBehaviour
                     OnGestureCompletion.Invoke(data);
                     data.parts = new GestureCompletionData.Part[0]; // reset
                 }
+            }
+        }
+    }
+
+    IEnumerator GetFingersTips()
+    {
+        {
+            while (LeftHand == null || RightHand==null)
+            {
+                yield return new WaitForSeconds(1f);
+                if (Player.instance.hands[0].HasSkeleton()) LeftHand = Player.instance.hands[0].skeleton.indexTip.gameObject;
+                if (Player.instance.hands[1].HasSkeleton()) RightHand = Player.instance.hands[1].skeleton.indexTip.gameObject;
             }
         }
     }

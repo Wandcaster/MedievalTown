@@ -24,7 +24,6 @@ public class SpellController : MonoBehaviour
   
     public void choosespell(GestureCompletionData gesturecompletiondata)
     {
-        
         if (wand.interactable != null && wand.interactable.attachedToHand != null)
         {
             if (gesturecompletiondata.similarity > 0.5f)

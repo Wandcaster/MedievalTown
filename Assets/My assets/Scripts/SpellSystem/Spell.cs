@@ -12,6 +12,10 @@ public abstract class Spell : MonoBehaviour
 
 
     }
+    public virtual void CastSpell(GameObject tip)
+    {
+
+    }
    
 }
 //ku odkomentowanie
