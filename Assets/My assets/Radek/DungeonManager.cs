@@ -19,9 +19,13 @@ public class DungeonManager : MonoBehaviour
     private Transform dungeonEntrance;
 
     //TODO: prawdopodobienstwo na dana wielkosc lochu (maly/sredni/duzy)
-    private int GenerateLength(int min, int max)
+    private int GenerateLength(DungeonGenerateChances chances)
     {
-        return Random.Range(min, max);
+        int temp = UnityEngine.Random.Range(1, 100);
+        if (temp < chances.small) return UnityEngine.Random.Range(chances.smallMin, chances.smallMax);
+        if (temp < chances.medium) return UnityEngine.Random.Range(chances.mediumMin, chances.mediumMax);
+        return UnityEngine.Random.Range(chances.bigMin, chances.bigMax);
+
     }
     private void Start()
     {
@@ -45,9 +49,10 @@ public class DungeonManager : MonoBehaviour
     }
 
 
-    private void generateDung(GameObject transition)
+    private void generateDung(GameObject transition, DungeonGenerateChances chances)
     {
-        int length = GenerateLength(5, 7);
+        //int length = GenerateLength(5, 7);
+        int length = GenerateLength(chances);
 
         int tmp;
         GameObject room;
@@ -87,25 +92,27 @@ public class DungeonManager : MonoBehaviour
 
         }
 
-        //transitionPos = AppendRoom(
-        //       room.transform.Find("Room" + Random.Range(0, GetRooms())).gameObject,
-        //       transition, length-1, transitionPos);
+        transitionPos = AppendRoom(
+               room.transform.parent.Find("RestRooms").Find("Room" + Random.Range(0, GetRestRooms())).gameObject,
+               transition, length - 1, transitionPos);
 
 
+        transitionPos = AppendRoom(
+       room.transform.parent.Find("FinalRooms").Find("Room" + Random.Range(0, GetFinalRooms())).gameObject,
+       transition, length, transitionPos);
 
+        //tmp = Random.Range(0, GetFinalRooms());
+        //room = gameObject.transform.Find("Presets").Find("FinalRooms").Find("Room" + tmp).gameObject;
 
-        tmp = Random.Range(0, GetFinalRooms());
-        room = gameObject.transform.Find("Presets").Find("FinalRooms").Find("Room" + tmp).gameObject;
-
-        GameObject obj2 = Instantiate(room, transition.transform);
-        obj2.SetActive(true);
-        obj2.name = "GeneratedRoom" + (length-1);
-        transitionOffset = obj2.transform.position - obj2.transform.Find("Transition1").transform.position;
-        obj2.transform.position = new Vector3(
-                transitionPos.x + transitionOffset.x,
-                transitionPos.y + transitionOffset.y,
-                transitionPos.z + transitionOffset.z
-                );
+        //GameObject obj2 = Instantiate(room, transition.transform);
+        //obj2.SetActive(true);
+        //obj2.name = "GeneratedRoom" + (length-1);
+        //transitionOffset = obj2.transform.position - obj2.transform.Find("Transition1").transform.position;
+        //obj2.transform.position = new Vector3(
+        //        transitionPos.x + transitionOffset.x,
+        //        transitionPos.y + transitionOffset.y,
+        //        transitionPos.z + transitionOffset.z
+        //        );
 
 
 
@@ -135,7 +142,12 @@ public class DungeonManager : MonoBehaviour
             transitionPos.z + transitionOffset.z
             );
 
-        transitionPos = obj.transform.Find("Transition2").position;
+        try
+        {
+            transitionPos = obj.transform.Find("Transition2").position;
+        }
+        catch { }
+
         return transitionPos;
     }
 
