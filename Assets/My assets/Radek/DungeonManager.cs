@@ -54,9 +54,9 @@ public class DungeonManager : MonoBehaviour
         //int length = GenerateLength(5, 7);
         int length = GenerateLength(chances);
 
-        int tmp;
+        //int tmp;
         GameObject room;
-        Vector3 transitionOffset;
+        //Vector3 transitionOffset;
 
         Vector3 transitionPos = transition.transform.position;
 
