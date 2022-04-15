@@ -34,7 +34,7 @@ public class HandCastController : MonoBehaviour
     public void choosespell(GestureCompletionData gesturecompletiondata)
     {
         Debug.Log("Rozpoczêcie rozpoznawania..."+gesturecompletiondata.similarity);
-        if (gesturecompletiondata.similarity > 0.5f)
+        if (gesturecompletiondata.similarity > 0.35f)
         {
             if (spells.TryGetValue(gesturecompletiondata.gestureName, out value))
             {

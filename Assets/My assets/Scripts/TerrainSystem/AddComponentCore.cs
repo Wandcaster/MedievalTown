@@ -5,7 +5,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AddComponentCore : MonoBehaviour
 {
-    float z= 0.0014F;
+    [SerializeField]
+    private float xOffset=0.01F;
+    [SerializeField]
+    private float yOffset= 0.01F;
+    [SerializeField]
+    private float zOffset= 0.01F;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +22,7 @@ public class AddComponentCore : MonoBehaviour
             meshCollider.convex = true;
             BoxCollider boxCollider=item.gameObject.AddComponent<BoxCollider>();
             boxCollider.isTrigger = true;
-            boxCollider.size.Set(boxCollider.size.x,boxCollider.size.y, z);
+            boxCollider.size.Set(boxCollider.size.x+xOffset,boxCollider.size.y+yOffset, boxCollider.size.z+zOffset);
             item.gameObject.AddComponent<ActiveRigidBody>();
             item.GetComponent<MeshRenderer>().enabled = false;
         }

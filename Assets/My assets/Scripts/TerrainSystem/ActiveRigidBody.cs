@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+using UnityEditor;
 
 public class ActiveRigidBody : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class ActiveRigidBody : MonoBehaviour
     private int destroyTime = 4;
     private float velocityOfObject = 0;
     private bool oneTime = true;
-    private List<GameObject> neighbors = new List<GameObject>();
+    [SerializeField]
+    public List<GameObject> neighbors;
     [SerializeField]
     private float timeWithoutCollider = 0.1f;
 
@@ -35,10 +37,6 @@ public class ActiveRigidBody : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(!neighbors.Contains(other.gameObject)&other.CompareTag("Terrain")) neighbors.Add(other.gameObject);
-    }
     public void ActiveNeighbors()
     {
         foreach (GameObject item in neighbors)
@@ -52,6 +50,7 @@ public class ActiveRigidBody : MonoBehaviour
                 }
             }            
         }
+        
     }
     private IEnumerator DisableCollider()
     {
@@ -74,4 +73,8 @@ public class ActiveRigidBody : MonoBehaviour
         }        
     }
 
+    private void Awake()
+    {
+        EditorUtility.SetDirty(gameObject);
+    }
 }

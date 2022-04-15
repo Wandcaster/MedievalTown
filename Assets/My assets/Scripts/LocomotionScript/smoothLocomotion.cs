@@ -31,7 +31,6 @@ public class smoothLocomotion : MonoBehaviour
         {
             Direction += Physics.gravity;
         }
-
         characterController.Move(Direction);
        //player.position += speed * Time.deltaTime * Vector3.ProjectOnPlane(Direction, Vector3.up);
 
