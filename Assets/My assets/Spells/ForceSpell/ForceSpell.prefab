@@ -96,13 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: f3eb3da6bd6f3e946a564fe9cb3d135d, type: 2}
-  leftTriggerButton:
-    actionPath: /actions/default/in/TriggerLeft
-    needsReinit: 0
-  rightTriggerButton:
-    actionPath: /actions/default/in/TriggerRight
-    needsReinit: 0
-  handType: 0
   spellOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &4259270854966261942
 GameObject:
@@ -119,7 +112,7 @@ GameObject:
   - component: {fileID: 3185908635219275173}
   - component: {fileID: 2502006283810571270}
   - component: {fileID: 1239305355745631318}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +203,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4259270854966261942}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

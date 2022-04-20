@@ -14,8 +14,20 @@ public class smoothLocomotion : MonoBehaviour
     private Transform player;
     [SerializeField]
     private CharacterController characterController;
+    [SerializeField]
+    Transform Feet;
+    [SerializeField]
+    private float jumpHeight;
+    [SerializeField]
+    private float gravity;
+    [SerializeField]
+    private SteamVR_Action_Boolean jumpButton;
+    [SerializeField]
+    private SteamVR_Input_Sources inputSource;
+    [SerializeField]
+    Vector3 Direction;
+    Vector3 touchpadValue;
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +35,25 @@ public class smoothLocomotion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector3 Direction = Player.instance.hmdTransform.TransformDirection(new Vector3(touchpad.axis.x, 0, touchpad.axis.y));
-        Direction = speed * Vector3.ProjectOnPlane(Direction, Vector3.up);
-        if (characterController.isGrounded==false)
+        touchpadValue.x = touchpad.axis.x;
+        touchpadValue.y = 0;
+        touchpadValue.z = touchpad.axis.y;
+        if (characterController.height <= 0) characterController.height = 1;
+        characterController.center = new Vector3(Player.instance.hmdTransform.localPosition.x, Player.instance.hmdTransform.localPosition.y / 2, Player.instance.hmdTransform.localPosition.z);
+        characterController.height = Player.instance.hmdTransform.position.y-Feet.position.y;
+        if (characterController.isGrounded)
         {
-            Direction += Physics.gravity;
+            Direction = Player.instance.hmdTransform.TransformDirection(touchpadValue);
+            if (jumpButton.GetState(inputSource))
+            {
+                Direction.y = jumpHeight;
+            }
         }
-        characterController.Move(Direction);
-       //player.position += speed * Time.deltaTime * Vector3.ProjectOnPlane(Direction, Vector3.up);
+            Direction.y -= gravity * Time.deltaTime;               
+        characterController.Move(Direction*speed*Time.deltaTime);
+        characterController.stepOffset = characterController.height * characterController.radius*2;
 
     }
 }
