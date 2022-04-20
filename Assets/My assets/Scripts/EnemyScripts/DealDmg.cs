@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class DealDmg : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DealDmg : MonoBehaviour
     [SerializeField]
     public int baseMagicalDamage;
 
+    [SerializeField] private float baseDurability;
     [Tooltip("Per hit durability decrease, reaching max value destroys weapon")]
     [SerializeField] private float perHitDurabilityDecrease;
 
@@ -21,22 +23,23 @@ public class DealDmg : MonoBehaviour
     float maxDmgToDeal=10;//weapon's peak performance after maintenance
 
     [Tooltip("Minimal velocity to hit enemy")]
-    [SerializeField] float minimalVelocity;
+    [SerializeField] float minimalVelocityHold=12;
+    [SerializeField] float minimalVelocityThrown=8;
 
 
-    [SerializeField] GameObject player;
     //formula = strngth
     [SerializeField] float strengthMultiplayer;
     [SerializeField] float agilityMultiplayer;
     [SerializeField] float intelligenceMultiplayer;
 
 
-
+    private Interactable interactable;
     private float currentDurability;
 
     private void Start()
     {
-        currentDurability = perHitDurabilityDecrease;
+        currentDurability = baseDurability;
+        interactable = gameObject.GetComponent<Interactable>();
     }
 
 
@@ -45,19 +48,36 @@ public class DealDmg : MonoBehaviour
     {
         if (other.GetComponent<EnemyController>() != null)
         {
-            Debug.Log(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity));
-            if (CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocity)
+            if(interactable.attachedToHand)
             {
-                other.GetComponent<EnemyController>().currentHealth -= CalculateDamage();
-                if (dmgDealed >= currentDurability) GetComponent<DestroyToPieces>().DestroyObject();
-                currentDurability -= perHitDurabilityDecrease;
+                if(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocityHold) EnemyHit(other);
+                
 
             }
+                else if(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocityThrown) EnemyHit(other);
 
+
+            //Debug.Log(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity));
+            //if (interactable.attachedToHand && CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocityHold)
+            //{
+            //    other.GetComponent<EnemyController>().currentHealth -= CalculateDamage();
+            //    if (dmgDealed >= currentDurability) GetComponent<DestroyToPieces>().DestroyObject();
+            //    currentDurability -= perHitDurabilityDecrease;
+
+            //}
+            //else if(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocityHold)
 
 
 
         }
+    }
+
+    private void EnemyHit(Collider other)
+    {
+        Debug.Log(CalculateDamage());
+        other.GetComponent<EnemyController>().currentHealth -= CalculateDamage();
+        if (CalculateDamage() >= currentDurability) GetComponent<DestroyToPieces>().DestroyObject();
+        currentDurability -= perHitDurabilityDecrease;
     }
 
     private float CalculateSpeed(Vector3 velocity)
@@ -67,7 +87,7 @@ public class DealDmg : MonoBehaviour
 
     private float CalculateDamage()
     {
-        StatisticManager manager = player.GetComponent<StatisticManager>();
+        StatisticManager manager = Player.instance.GetComponent<StatisticManager>();
 
 
         return basePhysicalDamage + baseMagicalDamage +

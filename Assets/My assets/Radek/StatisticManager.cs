@@ -13,17 +13,17 @@ public class StatisticManager : MonoBehaviour
     //wisdom - increase magical armor efficiency ; armor_magical*wisdom_multiplayer
     private float strength=10, vitality=10, agility=10, intelligence=10, sturdiness=10, wisdom=10;
 
-    public float Strength { get; set; }
+    public float Strength { get { return strength; } set { strength = value; } }
 
-    public float Vitality { get; set; }
+    public float Vitality { get { return vitality; } set { vitality = value; } }
 
-    public float Agility { get; set; }
+    public float Agility { get { return agility; } set { agility = value; } }
 
-    public float Intelligence { get; set; }
+    public float Intelligence { get { return intelligence; } set { intelligence = value; } }
 
-    public float Sturdiness { get; set; }
+    public float Sturdiness { get { return sturdiness; } set { sturdiness = value; } }
 
-    public float Wisdom { get; set; }
+    public float Wisdom { get { return wisdom; } set { wisdom = value; } }
 
     private void Update()
     {

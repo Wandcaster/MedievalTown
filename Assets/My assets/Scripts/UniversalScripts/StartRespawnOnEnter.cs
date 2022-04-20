@@ -38,6 +38,7 @@ public class StartRespawnOnEnter : MonoBehaviour
                 EnemyManager.Instance.Respawn(EnemyCount, respawnFrequency, position, respawnRadius, enemyToRespawn);
                 isDone = true;
             }
+//            Debug.Log("dziala");
         }
     }
     private void OnTriggerExit(Collider other)

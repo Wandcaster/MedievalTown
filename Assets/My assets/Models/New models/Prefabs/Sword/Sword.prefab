@@ -236,9 +236,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0007cbe8acbc3a4a924904e878f8182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 10
-  dmgDealed: 0
-  MaxDmgToDeal: 10
+  basePhysicalDamage: 10
+  baseMagicalDamage: 0
+  baseDurability: 20
+  perHitDurabilityDecrease: 1
+  maxDmgToDeal: 50
+  minimalVelocityHold: 12
+  minimalVelocityThrown: 8
+  strengthMultiplayer: 1
+  agilityMultiplayer: 0
+  intelligenceMultiplayer: 0
 --- !u!114 &7794898513205072985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,5 +258,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930bdf2831a9f044b970415d4ed330c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPieces: {fileID: 0}
+  objectPieces: {fileID: 8466872323926487936, guid: da2068f777d88ca42a4a86f6d703ef4b, type: 3}
   breakForce: 1
