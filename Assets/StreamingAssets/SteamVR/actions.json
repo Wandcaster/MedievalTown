@@ -67,6 +67,10 @@
       "requirement": "suggested"
     },
     {
+      "name": "/actions/default/in/BoolLeftTrigger",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

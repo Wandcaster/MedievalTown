@@ -6,4 +6,6 @@ public abstract class Item : MonoBehaviour
 {
     public abstract Vector3 orginalScale { get; set; }
     public abstract Transform orginalParent { get; set; }
+    public abstract bool haveSlot { get; set; }
+
 }
