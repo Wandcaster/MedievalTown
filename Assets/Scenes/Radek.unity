@@ -1729,6 +1729,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3043602138752143975, guid: f48e177e409beef42b68137289cb4525, type: 3}
+      propertyPath: strengthStatIncrease
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043602138752143975, guid: f48e177e409beef42b68137289cb4525, type: 3}
       propertyPath: perHitDurabilityDecrease
       value: 1
       objectReference: {fileID: 0}
@@ -4999,7 +5003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044251602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -0.5}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 62887546}
