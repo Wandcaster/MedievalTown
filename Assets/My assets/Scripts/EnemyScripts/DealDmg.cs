@@ -29,13 +29,13 @@ public class DealDmg : MonoBehaviour
 
     //*StatIncrease = if hit occurred then add number and when it reaches max value add to corresponding attribute
     [SerializeField] float strengthMultiplayer;
-    [SerializeField] float strengthStatIncrease;
+    [SerializeField] int strengthStatIncrease;
 
     [SerializeField] float agilityMultiplayer;
-    [SerializeField] float agilityStatIncrease;
+    [SerializeField] int agilityStatIncrease;
 
     [SerializeField] float intelligenceMultiplayer;
-    [SerializeField] float intelligenceStatIncrease;
+    [SerializeField] int intelligenceStatIncrease;
 
     public delegate void training(Training tr);
     public event training train;
@@ -85,24 +85,38 @@ public class DealDmg : MonoBehaviour
 
     private void Update()
     {
-        //if(Input.GetKeyDown())train(new Training(1, 0, 0, 0, 0, 0));
+        //if(Input.GetKeyDown(KeyCode.X))train(new Training(1000, 0, 0, 0, 0, 0));
+        //train(new Training(1, 0, 0, 0, 0, 0));
     }
 
 
     private void EnemyHit(Collider other)
     {
-        Debug.Log(CalculateDamage());
-        other.GetComponent<EnemyController>().currentHealth -= CalculateDamage();
-        if (CalculateDamage() >= currentDurability) { train -= manager.AddStats; GetComponent<DestroyToPieces>().DestroyObject(); }
+        //Debug.Log(CalculateDamage());
+        float calculatedDamage;
+
+
+        //held
+        if (interactable.attachedToHand != null) calculatedDamage = CalculateDamage(minimalVelocityHold, gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+        else calculatedDamage = CalculateDamage(minimalVelocityThrown, gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+
+        other.GetComponent<EnemyController>().currentHealth -= calculatedDamage;
+        Debug.Log(calculatedDamage);
+        train(new Training(strengthStatIncrease, 0, agilityStatIncrease, intelligenceStatIncrease,0,0));
+
+        if (calculatedDamage >= currentDurability) { train -= manager.AddStats; GetComponent<DestroyToPieces>().DestroyObject(); }
         currentDurability -= perHitDurabilityDecrease;
     }
 
-    private float CalculateDamage()
+    private float CalculateDamage(float minimalVelocity, float currentVelocity)
     {
+        float physicalMultiplayer = 1 + (currentVelocity - minimalVelocity) / minimalVelocity / 10;
+        if (physicalMultiplayer > 2) physicalMultiplayer = 2;
 
-        return basePhysicalDamage + baseMagicalDamage +
+        //gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold
+        return (basePhysicalDamage + baseMagicalDamage +
             strengthMultiplayer * manager.Strength +
-            agilityMultiplayer * manager.Agility +
+            agilityMultiplayer * manager.Agility) * physicalMultiplayer +
             intelligenceMultiplayer * manager.Intelligence;
     }
 }

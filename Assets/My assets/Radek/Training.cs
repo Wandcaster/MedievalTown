@@ -5,13 +5,15 @@ using UnityEngine;
 public class Training
 {
     //strLV -> zaczynajac od 0, ile razy dano dan¹ statystyke
-    private int str, strLV;
+    public int str, strLV;
     private int vit, vitLV;
     private int agi, agiLV;
     private int inte, inteLV;
     private int stur, sturLV;
     private int wsd, wsdLV;
 
+
+    //TODO: dodatkowe przeciazenie na enumie
     public Training(int str, int vit, int agi, int inte, int stur, int wsd)
     {
         this.str = str;
@@ -30,7 +32,7 @@ public class Training
 
     public bool CheckSTR()
     {
-        if (str > Requirements(strLV))
+        if (str >= Requirements(strLV))
         {
             str -= Requirements(strLV);
             strLV++;
@@ -41,7 +43,7 @@ public class Training
     }
     public bool CheckVIT()
     {
-        if (vit > Requirements(vitLV))
+        if (vit >= Requirements(vitLV))
         {
             vit -= Requirements(vitLV);
             vitLV++;
@@ -52,7 +54,7 @@ public class Training
     }
     public bool CheckAGI()
     {
-        if (agi > Requirements(agiLV))
+        if (agi >= Requirements(agiLV))
         {
             agi -= Requirements(agiLV);
             agiLV++;
@@ -63,7 +65,7 @@ public class Training
     }
     public bool CheckINTE()
     {
-        if (inte > Requirements(inteLV))
+        if (inte >= Requirements(inteLV))
         {
             inte -= Requirements(inteLV);
             inteLV++;
@@ -74,7 +76,7 @@ public class Training
     }
     public bool CheckSTUR()
     {
-        if (stur > Requirements(sturLV))
+        if (stur >= Requirements(sturLV))
         {
             stur -= Requirements(sturLV);
             sturLV++;
@@ -85,7 +87,7 @@ public class Training
     }
     public bool CheckWSD()
     {
-        if (wsd > Requirements(wsdLV))
+        if (wsd >= Requirements(wsdLV))
         {
             wsd -= Requirements(wsdLV);
             wsdLV++;

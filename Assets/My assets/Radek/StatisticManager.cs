@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatisticManager : MonoBehaviour
 {
     private float hp=100, mp=100;
+    private float maxHP = 100, maxMP=100;
     //str - increase melee damage
     //vitality - increase max hp
     //agility - increase ranged damage (bows)
@@ -16,12 +17,11 @@ public class StatisticManager : MonoBehaviour
 
 
 
-
     public void AddStats(Training train)
     {
-        //TODO:dodawanie statystyk
+//        Debug.Log(train.str);
         currentTraining.AddAll(train);
-        if (currentTraining.CheckSTR()) { strength += 1; Debug.Log("+1"); }
+        if (currentTraining.CheckSTR()) { strength += 1; Debug.Log(strength); }
         if (currentTraining.CheckVIT()) vitality += 1;
         if (currentTraining.CheckAGI()) agility+= 1;
         if (currentTraining.CheckINTE()) intelligence += 1;
@@ -60,6 +60,10 @@ public class StatisticManager : MonoBehaviour
     private void Start()
     {
         currentTraining = new Training(0, 0, 0, 0, 0, 0);
+        hp = 100;
+        maxHP = 100;
+        mp = 100;
+        maxMP = 100;
     }
 
 
@@ -71,5 +75,28 @@ public class StatisticManager : MonoBehaviour
 
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<RestArea>() != null)
+        {
+            RestArea tmp = other.GetComponent<RestArea>();
+            hp += tmp.calculateHP();
+            mp += tmp.calculateMP();
+            checkBaseStats();
+            Debug.Log("HP" + hp);
+        }
+    }
+
+    private void checkBaseStats()
+    {
+        if (hp > maxHP) hp = maxHP;
+        if (mp > maxMP) mp = maxMP;
+
+    }
+
+
+
+
 
 }
