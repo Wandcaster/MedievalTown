@@ -41,11 +41,8 @@ public class RotationInventory : MonoBehaviour
         transform.rotation = Quaternion.Euler(constRotation.x, transform.parent.rotation.eulerAngles.y, constRotation.z);
         if (other!=null&Player.instance.rightHand.currentAttachedObject==null)
         {
-            Debug.Log("Finger in Collider");
             if (rightTriggerButton.GetState(handTypeForTrigger))
             {
-                Debug.Log("Button Cliced!");
-
                 change = transform.InverseTransformPoint(other.transform.position) - tempPosition;
 
                 if (transform.InverseTransformPoint(other.transform.position).x > 0 & transform.InverseTransformPoint(other.transform.position).z > 0)
@@ -62,11 +59,7 @@ public class RotationInventory : MonoBehaviour
                     change.x = -change.x;
                 }
 
-                childs[0].GetComponent<ScaleNearestChild>().StopAllCoroutines();
-                childs[0].GetComponent<ScaleNearestChild>().ResetScale();
-                childs[1].GetComponent<ScaleNearestChild>().StartCoroutine(childs[1].GetComponent<ScaleNearestChild>().UpdateSpheres());
-                childs[2].GetComponent<ScaleNearestChild>().StopAllCoroutines();
-                childs[2].GetComponent<ScaleNearestChild>().ResetScale();
+                
 
 
                 childs[1].Rotate(new Vector3(0, (change.x + change.z) * rotateMultiply, 0));

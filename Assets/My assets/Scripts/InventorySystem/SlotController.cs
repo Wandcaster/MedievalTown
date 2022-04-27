@@ -5,23 +5,18 @@ using Valve.VR.InteractionSystem;
 
 public class SlotController : MonoBehaviour
 {
-    private Interactable interactable;
     private Rigidbody rigid;
     private Item item;
-    [SerializeField]
-    private Vector3 refSize;
-    private bool slotTaken=false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Interactable>() == null || other.GetComponent<Rigidbody>()==null || other.GetComponent<Item>() == null) return;
+        if (other.GetComponent<Interactable>() == null || other.GetComponent<Rigidbody>() == null || other.GetComponent<Item>() == null) return;
         if (other.GetComponent<Item>().haveSlot == true) return;
-        other.GetComponent<Item>().haveSlot = false;
         if (other.GetComponent<Interactable>().attachedToHand == true) return;
-        if (item!=null) return;
-        interactable = other.GetComponent<Interactable>();
+        other.GetComponent<Item>().haveSlot = true;
+        if (item != null) return;
         rigid = other.GetComponent<Rigidbody>();
         item = other.GetComponent<Item>();
-        
+
         other.transform.SetParent(transform);
         other.transform.rotation = Quaternion.identity;
         other.transform.localScale = Resize(other.GetComponent<Renderer>());
@@ -40,10 +35,9 @@ public class SlotController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Interactable>() == null || other.GetComponent<Item>() == null|| other.GetComponent<Interactable>().attachedToHand == false) return;
-        other.GetComponent<Item>().haveSlot = true;
+        if (other.GetComponent<Interactable>() == null || other.GetComponent<Item>() == null || other.GetComponent<Interactable>().attachedToHand == false) return;
+        other.GetComponent<Item>().haveSlot = false;
         if (item != other.GetComponent<Item>()) return;
-
         other.transform.localScale = item.orginalScale;
         other.transform.SetParent(item.orginalParent);
 
@@ -52,4 +46,4 @@ public class SlotController : MonoBehaviour
         item = null;
     }
 
-}//Poprawiæ czy slot jest zajêty oraz ¿eby sloty
+}
