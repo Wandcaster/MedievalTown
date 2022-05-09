@@ -37,9 +37,9 @@ public class GenerateDungeon : MonoBehaviour
         {
 
             generateDungeon(transition, new DungeonGenerateChances(
-                smallDungeonSizeMin, smallDungeonSizeMax, 
-                mediumDungeonSizeMin, mediumDungeonSizeMax,
-                bigDungeonSizeMin, bigDungeonSizeMax,
+                smallDungeonSizeMin, smallDungeonSizeMax+1, 
+                mediumDungeonSizeMin, mediumDungeonSizeMax+1,
+                bigDungeonSizeMin, bigDungeonSizeMax+1,
                 smallDungeonChances, mediumDungeonChances
                 
                 
