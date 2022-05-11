@@ -980,8 +980,8 @@ MonoBehaviour:
   smallDungeonSizeMax: 4
   mediumDungeonSizeMin: 7
   mediumDungeonSizeMax: 9
-  bigDungeonSizeMin: 80
-  bigDungeonSizeMax: 80
+  bigDungeonSizeMin: 5000
+  bigDungeonSizeMax: 5000
 --- !u!65 &62887543
 BoxCollider:
   m_ObjectHideFlags: 0
