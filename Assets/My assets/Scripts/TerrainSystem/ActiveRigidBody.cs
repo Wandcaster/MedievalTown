@@ -73,8 +73,8 @@ public class ActiveRigidBody : MonoBehaviour
         }        
     }
 
-    private void Awake()
-    {
-        EditorUtility.SetDirty(gameObject);
-    }
+    //private void Awake()
+    //{
+    //    EditorUtility.SetDirty(gameObject);
+    //}
 }

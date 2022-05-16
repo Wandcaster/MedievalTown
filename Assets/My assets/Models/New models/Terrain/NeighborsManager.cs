@@ -8,7 +8,6 @@ public class NeighborsManager : MonoBehaviour
     {
         foreach (var item in GetComponentsInChildren<GetAllNeighbors>())
         {
-            //item.GetComponent<ActiveRigidBody>().neighbors.Clear();
             item.GetNeighbors();
         }
     }
