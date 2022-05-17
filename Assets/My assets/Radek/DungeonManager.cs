@@ -22,8 +22,8 @@ public class DungeonManager : MonoBehaviour
     //Delete it when you serialize it's contents in GenerateDungeon.cs
     private void Awake()
     {
-        roomsWithoutDescendingArea = 0;
-        chanceToSpawnDescendingArea = 1;
+        roomsWithoutDescendingArea = 3;
+        chanceToSpawnDescendingArea = 5;
     }
 
 
@@ -48,11 +48,11 @@ public class DungeonManager : MonoBehaviour
     private void Start()
     {
         roomNames = new RoomNames();
-        numberOfRooms = gameObject.transform.Find("Presets").Find("Rooms").childCount;
-        numberOfFinalRooms = gameObject.transform.Find("Presets").Find("FinalRooms").childCount;
-        numberOfRestRooms = gameObject.transform.Find("Presets").Find("RestRooms").childCount;
-        numberOfDescendingRooms = gameObject.transform.Find("Presets").Find("DescendingAreas").childCount;
-        numberOfDeadEndRooms = gameObject.transform.Find("Presets").Find("DeadEndRooms").childCount;
+        numberOfRooms = gameObject.transform.Find(roomNames.GetPresets()).Find("Rooms").childCount;
+        numberOfFinalRooms = gameObject.transform.Find(roomNames.GetPresets()).Find(roomNames.GetFinalRooms()).childCount;
+        numberOfRestRooms = gameObject.transform.Find(roomNames.GetPresets()).Find(roomNames.GetRestRooms()).childCount;
+        numberOfDescendingRooms = gameObject.transform.Find(roomNames.GetPresets()).Find(roomNames.GetDescendingAreas()).childCount;
+        numberOfDeadEndRooms = gameObject.transform.Find(roomNames.GetPresets()).Find(roomNames.GetDeadEndRooms()).childCount;
         
 
         GenerateDungeon[] tab = FindObjectsOfType<GenerateDungeon>();
@@ -87,12 +87,17 @@ public class DungeonManager : MonoBehaviour
             //Debug.Log(remainingLength);
 
             int i=0;
+        List<bool> availableRoomsID = new List<bool>();
+
+
+
+
 
         //generowanie pokoi bez przy³¹czania/generowania pokoju prowadz¹cego w dó³
             for (i = 0; i < roomsToGenerateWithoutDescendingArea; i++)
             {
                 transitionPos = AppendRoom(
-                room.transform.Find("Room" + Random.Range(0, GetRooms())).gameObject,
+                room.transform.Find(roomNames.GetRoom() + Random.Range(0, GetRooms())).gameObject,
                 transition, i, transitionPos);
 
             }
@@ -118,10 +123,10 @@ public class DungeonManager : MonoBehaviour
                     {
                         //descendArea
                         transitionPos = AppendRoom(
-                            room.transform.parent.Find("DescendingAreas").Find("Room" + Random.Range(0, GetFinalRooms())).gameObject,
+                            room.transform.parent.Find(roomNames.GetDescendingAreas()).Find(roomNames.GetRoom() + Random.Range(0, GetFinalRooms())).gameObject,
                             transition, i, transitionPos);
 
-                        GameObject tmp = transition.transform.Find("GeneratedRoom" + i).gameObject;
+                        GameObject tmp = transition.transform.Find(roomNames.GetGeneratedRoom() + i).gameObject;
 
                         int length1;
                         int length2;
@@ -133,18 +138,31 @@ public class DungeonManager : MonoBehaviour
                             //Debug.Log(tmp.name);
                         }
                         //Debug.Log(tmp.name+";"+(length1 >= length2).ToString()+";"+(!(length1 >= length2)).ToString());
-                        GenerateDungeon(tmp.transform.Find("Transition2").gameObject, length1, hasBossRoom && length1 >= length2, room, false);
-                        GenerateDungeon(tmp.transform.Find("Transition3").gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
-                        remainingLength = 0;
+                        //pokoj z boss room'em ma priorytet - czyli tam, gdzie jest dalej w lochu
+                            if (length1 >= length2)
+                            {
+                                GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
+                                GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
+                                remainingLength = 0;
+                            }
+                            else
+                            {
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
+                            remainingLength = 0;
+
+                        }
+
+
+
                         break;
-                        //Debug.Log("dzialam pomimo break'a");
                     }
                     //gdy nie nast¹pi generowanie zejœcia w dó³ to generowany jest normalny pokój
                     else
                     {
                         //Room
                         transitionPos = AppendRoom(
-                    room.transform.Find("Room" + Random.Range(0, GetRooms())).gameObject,
+                    room.transform.Find(roomNames.GetRoom() + Random.Range(0, GetRooms())).gameObject,
                     transition, i, transitionPos);
                     }
 
@@ -154,7 +172,7 @@ public class DungeonManager : MonoBehaviour
                 {
                     //Room
                     transitionPos = AppendRoom(
-                    room.transform.Find("Room" + Random.Range(0, GetRooms())).gameObject,
+                    room.transform.Find(roomNames.GetRoom() + Random.Range(0, GetRooms())).gameObject,
                     transition, i, transitionPos);
                     //Debug.Log("To ja sie odpalam wiele razy");
                 }
@@ -165,19 +183,19 @@ public class DungeonManager : MonoBehaviour
                     {
                         //restRoom and bossRoom
                         transitionPos = AppendRoom(
-                               room.transform.parent.Find("RestRooms").Find("Room" + Random.Range(0, GetRestRooms())).gameObject,
+                               room.transform.parent.Find(roomNames.GetRestRooms()).Find(roomNames.GetRoom() + Random.Range(0, GetRestRooms())).gameObject,
                                transition, i++, transitionPos);
 
 
                         transitionPos = AppendRoom(
-                       room.transform.parent.Find("FinalRooms").Find("Room" + Random.Range(0, GetFinalRooms())).gameObject,
+                       room.transform.parent.Find(roomNames.GetFinalRooms()).Find(roomNames.GetRoom() + Random.Range(0, GetFinalRooms())).gameObject,
                        transition, i, transitionPos);
                     }
                     else
                     {
                         //deadEndRoom
                         transitionPos = AppendRoom(
-                       room.transform.parent.Find("DeadEndRooms").Find("Room" + Random.Range(0, GetDeadEndRooms())).gameObject,
+                       room.transform.parent.Find(roomNames.GetDeadEndRooms()).Find(roomNames.GetRoom() + Random.Range(0, GetDeadEndRooms())).gameObject,
                        transition, remainingLength, transitionPos);
                     }
                     break;
@@ -216,6 +234,8 @@ public class DungeonManager : MonoBehaviour
 
         GameObject obj = Instantiate(room, parent.transform);
         obj.SetActive(true);
+        obj.transform.Find("Walls").gameObject.SetActive(true);
+        obj.transform.Find("POI").gameObject.SetActive(true);
         obj.name = "GeneratedRoom" + generatedRoomID;
         Vector3 transitionOffset = obj.transform.position - obj.transform.Find("Transition1").transform.position;
 
@@ -229,7 +249,7 @@ public class DungeonManager : MonoBehaviour
 
         try
         {
-            transitionPos = obj.transform.Find("Transition2").position;
+            transitionPos = obj.transform.Find(roomNames.GetTransition2()).position;
         }
         catch { }
 
@@ -237,5 +257,32 @@ public class DungeonManager : MonoBehaviour
     }
 
 
+    //1-Rooms, 2-RestRooms, 3-FinalRooms, 4-DescendingAreas, 5-FinalRooms
+    //private bool CheckRoom(GameObject room, Vector3 transitionPos, string roomName)
+    //{
+    //    room.SetActive(true);
+    //    Vector3 transitionOffset = room.transform.position - room.transform.Find("Transition1").transform.position;
+    //    room.transform.position = new Vector3(
+    //        transitionPos.x + transitionOffset.x,
+    //        transitionPos.y + transitionOffset.y,
+    //        transitionPos.z + transitionOffset.z
+    //        );
+    //    GameObject checkArea= transform.Find(roomNames.GetPresets()).Find(roomName).gameObject;
+
+
+
+    //    GameObject tmp;
+
+    //    for (int i=0; i< checkArea.transform.childCount; i++)
+    //    {
+    //        tmp = checkArea.transform.GetChild(i).Find("CheckArea").gameObject;
+    //        for (int j=0; j < tmp.transform.childCount; j++)
+    //        {
+
+
+    //        }
+    //    }
+
+    //}
 
 }

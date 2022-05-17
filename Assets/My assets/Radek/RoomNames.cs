@@ -24,6 +24,8 @@ public class RoomNames
         finalRooms = "FinalRooms";
         deadEndRooms = "DeadEndRooms";
         generatedRoom = "GeneratedRoom";
+        restRooms = "RestRooms";
+        generatedRoom = "GeneratedRoom";
     }
     public string GetRoom() { return room; }
     public string GetDescendingAreas() { return descendingAreas; }
@@ -32,5 +34,9 @@ public class RoomNames
     public string GetPresets() { return presets; }
     public string GetFinalRooms() { return finalRooms; }
     public string GetDeadEndRooms() { return deadEndRooms; }
+    public string GetRestRooms() { return restRooms; }
+
+    public string GetGeneratedRoom() { return generatedRoom; }
+    
 
 }
