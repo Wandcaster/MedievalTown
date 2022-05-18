@@ -31,7 +31,14 @@ public class EnemyController : MonoBehaviour
 
 
     [SerializeField]
-    public float currentHealth; 
+    public float currentHealth;
+    [SerializeField] public float currentPhysicalDMG;
+    [SerializeField] public float currentMagicalDMG;
+    [SerializeField] public float currentPhysicalArmor;
+    [SerializeField] public float currentMagicalArmor;
+
+
+
     // Start is called before the first frame update
     void Start()
     {

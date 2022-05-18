@@ -66,10 +66,9 @@ public class StatisticManager : MonoBehaviour
         maxMP = 100;
     }
 
-
     private void Update()
     {
-        if (hp == 0)
+        if (hp <= 0)
         {
             //gameOver();
 
@@ -83,18 +82,22 @@ public class StatisticManager : MonoBehaviour
             RestArea tmp = other.GetComponent<RestArea>();
             hp += tmp.calculateHP();
             mp += tmp.calculateMP();
-            checkBaseStats();
+            CheckBaseStats();
             Debug.Log("HP" + hp);
         }
     }
 
-    private void checkBaseStats()
+    private void CheckBaseStats()
     {
         if (hp > maxHP) hp = maxHP;
         if (mp > maxMP) mp = maxMP;
 
     }
-
+    public void DamageTaken(float physicalDMG, float magicalDMG)
+    {
+        hp -= physicalDMG - magicalDMG;
+        Debug.Log("HP gracza " + hp);
+    }
 
 
 

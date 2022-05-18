@@ -94,11 +94,13 @@ public class DealDmg : MonoBehaviour
     {
         //Debug.Log(CalculateDamage());
         float calculatedDamage;
-
+        other.gameObject.GetComponent<EnemyController>();
 
         //held
-        if (interactable.attachedToHand != null) calculatedDamage = CalculateDamage(minimalVelocityHold, gameObject.GetComponent<Rigidbody>().velocity.magnitude);
-        else calculatedDamage = CalculateDamage(minimalVelocityThrown, gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+        if (interactable.attachedToHand != null) calculatedDamage = CalculateDamage(minimalVelocityHold, gameObject.GetComponent<Rigidbody>().velocity.magnitude
+            , other.gameObject.GetComponent<EnemyController>().currentPhysicalArmor, other.gameObject.GetComponent<EnemyController>().currentMagicalArmor);
+        else calculatedDamage = CalculateDamage(minimalVelocityThrown, gameObject.GetComponent<Rigidbody>().velocity.magnitude
+            , other.gameObject.GetComponent<EnemyController>().currentPhysicalArmor, other.gameObject.GetComponent<EnemyController>().currentMagicalArmor);
 
         other.GetComponent<EnemyController>().currentHealth -= calculatedDamage;
         Debug.Log(calculatedDamage);
@@ -108,15 +110,24 @@ public class DealDmg : MonoBehaviour
         currentDurability -= perHitDurabilityDecrease;
     }
 
-    private float CalculateDamage(float minimalVelocity, float currentVelocity)
+    private float CalculateDamage(float minimalVelocity, float currentVelocity, float physicalArmor, float magicalArmor)
     {
         float physicalMultiplayer = 1 + (currentVelocity - minimalVelocity) / minimalVelocity / 10;
         if (physicalMultiplayer > 2) physicalMultiplayer = 2;
 
+        //armor/(armor+300) -> wzor na pancerz
+
+        Debug.Log("p.armor " + physicalArmor + "m.armor" + magicalArmor);
         //gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold
         return (basePhysicalDamage + baseMagicalDamage +
             strengthMultiplayer * manager.Strength +
-            agilityMultiplayer * manager.Agility) * physicalMultiplayer +
-            intelligenceMultiplayer * manager.Intelligence;
+            agilityMultiplayer * manager.Agility) * physicalMultiplayer*(1-CalculateArmor(physicalArmor)) +
+            intelligenceMultiplayer * manager.Intelligence*(1-CalculateArmor(magicalArmor));
+    }
+    //zwraca wartosc redukcji obrazen
+    private float CalculateArmor(float armor)
+    {
+        return armor / (armor + 300);
+
     }
 }
