@@ -6,7 +6,6 @@ public class StartRespawnOnEnter : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyToRespawn;
-    [SerializeField]
     private Vector3 position;
     private bool isDone = false;
     [SerializeField]
@@ -22,6 +21,7 @@ public class StartRespawnOnEnter : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
+        position = transform.position;
         if(!isTouch)
         {
             isTouch = true;

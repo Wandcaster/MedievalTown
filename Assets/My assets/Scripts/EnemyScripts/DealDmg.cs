@@ -61,7 +61,8 @@ public class DealDmg : MonoBehaviour
         {
             if(interactable.attachedToHand)
             {
-                if(gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold) EnemyHit(other);
+                Debug.Log("Prêdkoœæ:" + gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+                if (gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold) EnemyHit(other);
                 
 
             }
@@ -93,9 +94,10 @@ public class DealDmg : MonoBehaviour
     private void EnemyHit(Collider other)
     {
         //Debug.Log(CalculateDamage());
-        float calculatedDamage;
-        other.gameObject.GetComponent<EnemyController>();
 
+        float calculatedDamage;
+        other.gameObject.GetComponent<EnemyController>().GetHit() ;
+        Debug.Log("Prêdkoœæ:"+gameObject.GetComponent<Rigidbody>().velocity.magnitude);
         //held
         if (interactable.attachedToHand != null) calculatedDamage = CalculateDamage(minimalVelocityHold, gameObject.GetComponent<Rigidbody>().velocity.magnitude
             , other.gameObject.GetComponent<EnemyController>().currentPhysicalArmor, other.gameObject.GetComponent<EnemyController>().currentMagicalArmor);

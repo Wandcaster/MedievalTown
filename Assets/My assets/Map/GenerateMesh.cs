@@ -173,4 +173,12 @@ public class GenerateMesh : MonoBehaviour
         return transform.TransformPoint(nearestVertex);
 
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("Test");
+            FinalGenerateMap();
+        }
+    }
 }

@@ -129,7 +129,11 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("playerInAttackRange",playerInAttackRange);
         animator.SetBool("playerInStoppingDistance", playerInStoppingDistance);
     }
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    animator.SetTrigger("GetHit");
+    //}
+    public void GetHit()
     {
         animator.SetTrigger("GetHit");
     }

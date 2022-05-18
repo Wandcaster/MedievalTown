@@ -1766,22 +1766,6 @@ MonoBehaviour:
   - {fileID: 959709812}
   - {fileID: 39433458}
   mapCamera: {fileID: 2118468032}
---- !u!114 &162546667 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1003839528, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-  m_PrefabInstance: {fileID: 202042881}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a13dc1a6dc6354090ff5733dc14c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &162546669 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8586494847158013194, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-  m_PrefabInstance: {fileID: 202042881}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &175424100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,41 +1958,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1003839528, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: currentHealth
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003839528, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: currentMagicalDMG
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003839528, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: currentPhysicalDMG
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003839528, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: currentMagicalArmor
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003839528, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: currentPhysicalArmor
-      value: 600
-      objectReference: {fileID: 0}
     - target: {fileID: 8586494847148506830, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
       propertyPath: m_Name
       value: SkeletonKnight_Legacy Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586494847148506830, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586494847148506952, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8586494847148506998, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8586494847148729070, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
       propertyPath: m_RootOrder
@@ -10889,39 +10841,6 @@ Transform:
   m_Father: {fileID: 416700705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1890985530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8586494847148506998, guid: ffc61e3b821e4ae4d943d5d74832aaf9, type: 3}
-  m_PrefabInstance: {fileID: 202042881}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1890985531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890985530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da2bbe7fd4346e2468177ada991f2cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 162546669}
-  enemyController: {fileID: 162546667}
---- !u!64 &1890985532
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890985530}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: 5bdb723f10fa9bd498f304f0a10f2ec4, type: 3}
 --- !u!1 &1909165998
 GameObject:
   m_ObjectHideFlags: 0

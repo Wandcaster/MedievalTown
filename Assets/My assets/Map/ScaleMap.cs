@@ -23,8 +23,9 @@ public class ScaleMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.instance.leftHand.skeleton != null) other = Player.instance.leftHand.skeleton.indexTip.gameObject;
-        if (other != null & Player.instance.leftHand.currentAttachedObject == null)
+        //if (Player.instance.leftHand == null) return;
+        if (Player.instance.leftHand!=null && Player.instance.leftHand.skeleton != null) other = Player.instance.leftHand.skeleton.indexTip.gameObject;
+        if (other != null && Player.instance.leftHand.currentAttachedObject == null)
         {
             if (rightTriggerButton.GetState(handTypeForTrigger))
             {
