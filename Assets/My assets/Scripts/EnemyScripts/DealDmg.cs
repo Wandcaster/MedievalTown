@@ -55,18 +55,18 @@ public class DealDmg : MonoBehaviour
 
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.GetComponent<EnemyController>() != null)
+        if (other.gameObject.GetComponent<SingleBoneEnemy>() != null)
         {
             if(interactable.attachedToHand)
             {
                 Debug.Log("Prêdkoœæ:" + gameObject.GetComponent<Rigidbody>().velocity.magnitude);
-                if (gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold) EnemyHit(other);
+                if (gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold) EnemyHit(other.collider);
                 
 
             }
-                else if(gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityThrown) EnemyHit(other);
+                else if(gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityThrown) EnemyHit(other.collider);
 
 
             //Debug.Log(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity));
@@ -96,15 +96,15 @@ public class DealDmg : MonoBehaviour
         //Debug.Log(CalculateDamage());
 
         float calculatedDamage;
-        other.gameObject.GetComponent<EnemyController>().GetHit() ;
+        other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.GetHit();
         Debug.Log("Prêdkoœæ:"+gameObject.GetComponent<Rigidbody>().velocity.magnitude);
         //held
         if (interactable.attachedToHand != null) calculatedDamage = CalculateDamage(minimalVelocityHold, gameObject.GetComponent<Rigidbody>().velocity.magnitude
-            , other.gameObject.GetComponent<EnemyController>().currentPhysicalArmor, other.gameObject.GetComponent<EnemyController>().currentMagicalArmor);
+            , other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentPhysicalArmor, other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentMagicalArmor);
         else calculatedDamage = CalculateDamage(minimalVelocityThrown, gameObject.GetComponent<Rigidbody>().velocity.magnitude
-            , other.gameObject.GetComponent<EnemyController>().currentPhysicalArmor, other.gameObject.GetComponent<EnemyController>().currentMagicalArmor);
+            , other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentPhysicalArmor, other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentMagicalArmor);
 
-        other.GetComponent<EnemyController>().currentHealth -= calculatedDamage;
+        other.GetComponent<SingleBoneEnemy>().enemyController.currentHealth -= calculatedDamage;
         Debug.Log(calculatedDamage);
         train(new Training(strengthStatIncrease, 0, agilityStatIncrease, intelligenceStatIncrease,0,0));
 

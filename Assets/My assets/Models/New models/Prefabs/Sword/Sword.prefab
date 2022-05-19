@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 929502714369831558}
   - component: {fileID: 6303726610639838416}
   - component: {fileID: 6811263040087669221}
-  - component: {fileID: 6110190927979500720}
   - component: {fileID: 7988398906196470944}
   - component: {fileID: 1345118630682581893}
   - component: {fileID: 2286350914951376880}
   - component: {fileID: 3043602138752143975}
   - component: {fileID: 7794898513205072985}
+  - component: {fileID: 1743536741}
   m_Layer: 9
   m_Name: Sword
   m_TagString: MiningTool
@@ -31,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7058648467135276259}
-  m_LocalRotation: {x: -5.8297254e-15, y: -1.4269794e-36, z: -5.8297254e-15, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.019044174, y: 0.019044172, z: 0.019044174}
   m_Children: []
@@ -89,19 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6110190927979500720
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7058648467135276259}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.32, y: 54.52645, z: 2.7899697}
-  m_Center: {x: 0.0000035762787, y: 8.876763, z: -0.00018310547}
 --- !u!114 &7988398906196470944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,12 +227,14 @@ MonoBehaviour:
   baseMagicalDamage: 0
   baseDurability: 20
   perHitDurabilityDecrease: 1
-  maxDmgToDeal: 50
   minimalVelocityHold: 12
-  minimalVelocityThrown: 8
+  minimalVelocityThrown: 12
   strengthMultiplayer: 1
+  strengthStatIncrease: 0
   agilityMultiplayer: 0
+  agilityStatIncrease: 0
   intelligenceMultiplayer: 0
+  intelligenceStatIncrease: 0
 --- !u!114 &7794898513205072985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,4 +248,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPieces: {fileID: 8466872323926487936, guid: da2068f777d88ca42a4a86f6d703ef4b, type: 3}
-  breakForce: 1
+  breakForce: 300
+--- !u!64 &1743536741
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7058648467135276259}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4686849319519084627, guid: 8d49e1e99e5c3d246bca53da68826774, type: 3}
