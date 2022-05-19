@@ -23232,10 +23232,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3043602138752143975, guid: f48e177e409beef42b68137289cb4525, type: 3}
-      propertyPath: minimalVelocityHold
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 6110190927979500720, guid: f48e177e409beef42b68137289cb4525, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -26253,24 +26249,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6110190927979500720, guid: f48e177e409beef42b68137289cb4525, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7058648467135276259, guid: f48e177e409beef42b68137289cb4525, type: 3}
       propertyPath: m_Name
       value: Sword (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 7794898513205072985, guid: f48e177e409beef42b68137289cb4525, type: 3}
-      propertyPath: breakForce
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 7794898513205072985, guid: f48e177e409beef42b68137289cb4525, type: 3}
-      propertyPath: objectPieces
-      value: 
-      objectReference: {fileID: 8466872323926487936, guid: da2068f777d88ca42a4a86f6d703ef4b, type: 3}
-    m_RemovedComponents:
-    - {fileID: 6110190927979500720, guid: f48e177e409beef42b68137289cb4525, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f48e177e409beef42b68137289cb4525, type: 3}
 --- !u!4 &1540183874 stripped
 Transform:
@@ -29085,25 +29068,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &1743536740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7058648467135276259, guid: f48e177e409beef42b68137289cb4525, type: 3}
-  m_PrefabInstance: {fileID: 1540183873}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1743536741
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743536740}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4686849319519084627, guid: 8d49e1e99e5c3d246bca53da68826774, type: 3}
 --- !u!1 &1747307572 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8835708843612939030, guid: ace88e64fced433489c7601c176a9d39, type: 3}
@@ -33035,14 +32999,6 @@ PrefabInstance:
     - target: {fileID: 929502714369831558, guid: f48e177e409beef42b68137289cb4525, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3043602138752143975, guid: f48e177e409beef42b68137289cb4525, type: 3}
-      propertyPath: minimalVelocityHold
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3043602138752143975, guid: f48e177e409beef42b68137289cb4525, type: 3}
-      propertyPath: minimalVelocityThrown
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6110190927979500720, guid: f48e177e409beef42b68137289cb4525, type: 3}
       propertyPath: m_Enabled
