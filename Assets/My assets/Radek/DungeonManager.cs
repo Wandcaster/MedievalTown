@@ -97,6 +97,7 @@ public class DungeonManager : MonoBehaviour
                 else
                 {
                 //przerywa wykonywanie
+                Debug.Log("zablokuj przejœcie");
                     return;
                 }
             }
@@ -221,9 +222,16 @@ public class DungeonManager : MonoBehaviour
 
     private void GenerateDung(GameObject transition, DungeonGenerateChances chances)
     {
+        StartCoroutine(GenerateDungeon(transition, chances));
+    }
+
+    IEnumerator GenerateDungeon(GameObject transition, DungeonGenerateChances chances)
+    {
         ClearChild(transition);
+        yield return new WaitForSeconds(1);//bez tego ClearChild i GenerateDungeon lec¹ równolegle
         GenerateDungeon(transition, GenerateLength(chances), true, gameObject.transform.Find("Presets").Find("Rooms").gameObject, true);
     }
+
 
     private List<GameObject> GetAvailableRooms(GameObject parentFolder, GameObject parent, Vector3 transitionPos)
     {
