@@ -84,20 +84,14 @@ public class DungeonManager : MonoBehaviour
             int roomsToGenerateWithoutDescendingArea;
             if (remainingLength > roomsWithoutDescendingArea) roomsToGenerateWithoutDescendingArea = roomsWithoutDescendingArea;
             else roomsToGenerateWithoutDescendingArea = remainingLength;
-            //Debug.Log(remainingLength);
-
             int i=0;
-        //List<GameObject> availableRooms = GetAvailableRooms(room, transition);
-        //for (int j = 0; j < availableRooms.Count; j++) Debug.Log(availableRooms[j].name);
 
-        //Debug.Break();
         List<GameObject> availableRooms;
 
 
         //generowanie pokoi bez przy³¹czania/generowania pokoju prowadz¹cego w dó³
             for (i = 0; i < roomsToGenerateWithoutDescendingArea; i++)
             {
-                //availableRooms = GetAvailableRooms(room, transition);
                 availableRooms = GetAvailableRooms(room, transition, transitionPos);
                 if (availableRooms.Count != 0) transitionPos = AppendRoom(availableRooms, transition, i, transitionPos);
                 else
@@ -111,11 +105,13 @@ public class DungeonManager : MonoBehaviour
         //szansa na wygenerowanie pokoju prowadz¹cego w dó³, wzór: 1/n; n jest zmniejszane z ka¿d¹ iteracj¹
         System.Random rand = new System.Random();
         int chanceToSpawnDescendingAreaButLocal = chanceToSpawnDescendingArea;
+        bool descend = false;
+
         do
         {
             try
             {
-                
+
                 float randomFloat = (float)rand.NextDouble();//[0;1]
                 float chances = (float)1 / chanceToSpawnDescendingAreaButLocal;
                 remainingLength--;
@@ -126,12 +122,46 @@ public class DungeonManager : MonoBehaviour
                     //je¿eli ma nast¹piæ wygenerowanie pokoju to jest to sprawdzane, kiedy ma nast¹piæ zejœcie w dó³
                     if (randomFloat < chances)
                     {
-                        //GetAvailableRooms(room.transform.parent.Find(roomNames.GetDescendingAreas()), transition);
                         //descendArea
-                        transitionPos = AppendRoom(
-                             GetAvailableRooms(room.transform.parent.Find(roomNames.GetDescendingAreas()).gameObject, transition, transitionPos),
-                            transition, i, transitionPos);
+                        availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetDescendingAreas()).gameObject, transition, transitionPos);
+                        descend = true;
+                    }
+                    //gdy nie nast¹pi generowanie zejœcia w dó³ to generowany jest normalny pokój
+                    else
+                    {
+                        //Room
+                        availableRooms = GetAvailableRooms(room, transition, transitionPos);
+                    }
 
+                }
+                //gdy ma zostaæ 1 pokój do wygenerowania to musi byæ to zwyk³y pokój - nie mo¿e byæ to pokój prowadz¹cy w dó³
+                else if (remainingLength == 1)
+                {
+                    //Room
+                    availableRooms = GetAvailableRooms(room, transition, transitionPos);
+                }
+                //gdy pozosta³a d³ugoœæ lochu wynosi 0 to nastêpny pokój jest albo rest room z boss room'em, albo pokój bez wyjœcia
+                else //remainingLength==0
+                {
+                    if (hasBossRoom)
+                    {
+                        //restRoom and bossRoom
+                        availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetRestRooms()).gameObject, transition, transitionPos);
+
+                    }
+                    else
+                    {
+                        //deadEndRoom
+                        availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetDeadEndRooms()).gameObject, transition, transitionPos);
+                    }
+                    break;
+                }
+
+                if (availableRooms.Count != 0)
+                {
+                    transitionPos = AppendRoom(availableRooms, transition, i, transitionPos);
+                    if (descend)
+                    {
                         GameObject tmp = transition.transform.Find(roomNames.GetGeneratedRoom() + i).gameObject;
 
                         int length1;
@@ -141,69 +171,33 @@ public class DungeonManager : MonoBehaviour
                         {
                             length1 = UnityEngine.Random.Range(1, remainingLength - 1);
                             length2 = remainingLength - length1;
-                            //Debug.Log(tmp.name);
                         }
-                        //Debug.Log(tmp.name+";"+(length1 >= length2).ToString()+";"+(!(length1 >= length2)).ToString());
                         //pokoj z boss room'em ma priorytet - czyli tam, gdzie jest dalej w lochu
-                            if (length1 >= length2)
-                            {
-                                GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
-                                GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
-                                remainingLength = 0;
-                            }
-                            else
-                            {
+                        if (length1 >= length2)
+                        {
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
+                            remainingLength = 0;
+                        }
+                        else
+                        {
                             GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
                             GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
                             remainingLength = 0;
 
                         }
-
-
-
                         break;
                     }
-                    //gdy nie nast¹pi generowanie zejœcia w dó³ to generowany jest normalny pokój
-                    else
+                    else if (hasBossRoom)
                     {
-                        //Room
-                        transitionPos = AppendRoom(
-                    GetAvailableRooms(room, transition, transitionPos),
-                    transition, i, transitionPos);
-                    }
+                        availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetFinalRooms()).gameObject, transition, transitionPos);
+                        transitionPos = AppendRoom(availableRooms, transition, i, transitionPos);
 
+                    }
                 }
-                //gdy ma zostaæ 1 pokój do wygenerowania to musi byæ to zwyk³y pokój - nie mo¿e byæ to pokój prowadz¹cy w dó³
-                else if (remainingLength == 1)
+                else
                 {
-                    //Room
-                    transitionPos = AppendRoom(
-                    GetAvailableRooms(room, transition, transitionPos),
-                    transition, i, transitionPos);
-                }
-                //gdy pozosta³a d³ugoœæ lochu wynosi 0 to nastêpny pokój jest albo rest room z boss room'em, albo pokój bez wyjœcia
-                else //remainingLength==0
-                {
-                    if (hasBossRoom)
-                    {
-                        //restRoom and bossRoom
-                        //GetAvailableRooms(room.transform.parent.Find(roomNames.GetRestRooms()).gameObject)
-                        transitionPos = AppendRoom(
-                               GetAvailableRooms(room.transform.parent.Find(roomNames.GetRestRooms()).gameObject, transition, transitionPos),
-                               transition, i++, transitionPos);
-
-
-                        transitionPos = AppendRoom(
-                       GetAvailableRooms(room.transform.parent.Find(roomNames.GetFinalRooms()).gameObject, transition, transitionPos),
-                       transition, i, transitionPos);
-                    }
-                    else
-                    {
-                        //deadEndRoom
-                        transitionPos = AppendRoom(
-                       GetAvailableRooms(room.transform.parent.Find(roomNames.GetDeadEndRooms()).gameObject, transition, transitionPos),
-                       transition, remainingLength, transitionPos);
-                    }
+                    Debug.Log("Zablokuj przejœcie");
                     break;
                 }
 
@@ -218,9 +212,8 @@ public class DungeonManager : MonoBehaviour
             catch (System.Exception e)
             {
                 Debug.Log(e);
-                //Debug.Log("Bug2");
             }
-        } while (remainingLength != 0) ;
+        } while (remainingLength != 0);
 
     }
 
