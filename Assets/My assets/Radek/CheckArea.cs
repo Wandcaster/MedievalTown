@@ -11,6 +11,9 @@ public class CheckArea : MonoBehaviour
     //zwraca true, gdy obiekt z czymœ koliduje
     public bool SafeToPlace()
     {
+        Debug.Log(gameObject.transform.position + "|" + middle + "|" + halfExtents);
+
+
         return !Physics.CheckBox(middle, halfExtents);
     }
 

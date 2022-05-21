@@ -233,7 +233,15 @@ public class DungeonManager : MonoBehaviour
         //Debug.Log("childCount " + parentFolder.transform.childCount);
         for(int i=0; i < parentFolder.transform.childCount; i++)
         {
-            output.Add(parentFolder.transform.GetChild(i).gameObject);
+            if (CheckRoom(parentFolder.transform.GetChild(i).gameObject,transitionPos.transform.position, transitionPos))
+            {
+                output.Add(parentFolder.transform.GetChild(i).gameObject);
+            }
+            //output.Add(parentFolder.transform.GetChild(i).gameObject);
+        }
+        if(output.Count==0)
+        {
+            Debug.Log("Count0");
         }
         return output;
     }
@@ -246,7 +254,7 @@ public class DungeonManager : MonoBehaviour
     private Vector3 AppendRoom(List<GameObject> availableRooms, GameObject parent, int generatedRoomID, Vector3 transitionPos)
     {
         //GameObject room = gameObject.transform.Find("Presets").Find("Rooms").Find("Room" + roomID).gameObject;
-        
+        if (availableRooms.Count == 0) return transitionPos;
 
 
         GameObject obj = Instantiate
@@ -277,32 +285,40 @@ public class DungeonManager : MonoBehaviour
     }
 
 
-    //1-Rooms, 2-RestRooms, 3-FinalRooms, 4-DescendingAreas, 5-FinalRooms
-    //private bool CheckRoom(GameObject room, Vector3 transitionPos, string roomName)
-    //{
-    //    room.SetActive(true);
-    //    Vector3 transitionOffset = room.transform.position - room.transform.Find("Transition1").transform.position;
-    //    room.transform.position = new Vector3(
-    //        transitionPos.x + transitionOffset.x,
-    //        transitionPos.y + transitionOffset.y,
-    //        transitionPos.z + transitionOffset.z
-    //        );
-    //    GameObject checkArea= transform.Find(roomNames.GetPresets()).Find(roomName).gameObject;
+    //sprawdza czy pokój koliduje z innym
+    private bool CheckRoom(GameObject room, Vector3 transitionPos, GameObject parent)
+    {
+        //tworze pusty GameObject, aby z niego wziac pozniej poprawne rotation
+        GameObject obj = Instantiate
+            (room, parent.transform);
+        obj.SetActive(true);
+
+        GameObject checkArea = obj.transform.Find(roomNames.GetCheckArea()).gameObject;
+
+        Vector3 transitionOffset = obj.transform.position - obj.transform.Find("Transition1").transform.position;
+        obj.transform.position = new Vector3(
+            transitionPos.x + transitionOffset.x,
+            transitionPos.y + transitionOffset.y,
+            transitionPos.z + transitionOffset.z
+            );
+
+
+        bool output = true;
+        for (int i = 0; i < checkArea.transform.childCount; i++)
+        {
+            
+
+
+            if (!checkArea.transform.GetChild(i).GetComponent<CheckArea>().SafeToPlace()) output = false;
+        }
 
 
 
-    //    GameObject tmp;
-
-    //    for (int i=0; i< checkArea.transform.childCount; i++)
-    //    {
-    //        tmp = checkArea.transform.GetChild(i).Find("CheckArea").gameObject;
-    //        for (int j=0; j < tmp.transform.childCount; j++)
-    //        {
 
 
-    //        }
-    //    }
-
-    //}
+        //Destroy(obj);
+        return output;
+    }
+   
 
 }
