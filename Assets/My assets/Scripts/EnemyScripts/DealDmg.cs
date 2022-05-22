@@ -61,29 +61,26 @@ public class DealDmg : MonoBehaviour
         {
             if(interactable.attachedToHand)
             {
-                Debug.Log("Prêdkoœæ:" + gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+                Debug.Log("Predkosc:" + gameObject.GetComponent<Rigidbody>().velocity.magnitude);
                 if (gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityHold) EnemyHit(other.collider);
                 
 
             }
                 else if(gameObject.GetComponent<Rigidbody>().velocity.magnitude >= minimalVelocityThrown) EnemyHit(other.collider);
-
-
-            //Debug.Log(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity));
-            //if (interactable.attachedToHand && CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocityHold)
-            //{
-            //    other.GetComponent<EnemyController>().currentHealth -= CalculateDamage();
-            //    if (dmgDealed >= currentDurability) GetComponent<DestroyToPieces>().DestroyObject();
-            //    currentDurability -= perHitDurabilityDecrease;
-
-            //}
-            //else if(CalculateSpeed(gameObject.GetComponent<Rigidbody>().velocity) >= minimalVelocityHold)
-
-
-
         }
     }
 
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.GetComponent<SingleBoneEnemy>() != null)
+        {
+            float calculatedDamage = CalculateDamage(minimalVelocityThrown, GetComponent<missileController>().spellData.spellDamage
+            , other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentPhysicalArmor, other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentMagicalArmor);
+
+            other.GetComponent<SingleBoneEnemy>().enemyController.CurrentHealth -= calculatedDamage;
+
+        }
+    }
     private void Update()
     {
         //if(Input.GetKeyDown(KeyCode.X))train(new Training(1000, 0, 0, 0, 0, 0));
@@ -93,18 +90,16 @@ public class DealDmg : MonoBehaviour
 
     private void EnemyHit(Collider other)
     {
-        //Debug.Log(CalculateDamage());
-
         float calculatedDamage;
-        other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.GetHit();
-        Debug.Log("Prêdkoœæ:"+gameObject.GetComponent<Rigidbody>().velocity.magnitude);
+        //other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.GetHit();
+        Debug.Log("Predkosc:"+gameObject.GetComponent<Rigidbody>().velocity.magnitude);
         //held
         if (interactable.attachedToHand != null) calculatedDamage = CalculateDamage(minimalVelocityHold, gameObject.GetComponent<Rigidbody>().velocity.magnitude
             , other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentPhysicalArmor, other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentMagicalArmor);
         else calculatedDamage = CalculateDamage(minimalVelocityThrown, gameObject.GetComponent<Rigidbody>().velocity.magnitude
             , other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentPhysicalArmor, other.gameObject.GetComponent<SingleBoneEnemy>().enemyController.currentMagicalArmor);
 
-        other.GetComponent<SingleBoneEnemy>().enemyController.currentHealth -= calculatedDamage;
+        other.GetComponent<SingleBoneEnemy>().enemyController.CurrentHealth -= calculatedDamage;
         Debug.Log(calculatedDamage);
         train(new Training(strengthStatIncrease, 0, agilityStatIncrease, intelligenceStatIncrease,0,0));
 

@@ -30,7 +30,7 @@ public class ScaleMap : MonoBehaviour
             if (rightTriggerButton.GetState(handTypeForTrigger))
             {
                 change = transform.parent.InverseTransformPoint(other.transform.position) - tempPosition;
-                Debug.Log(change.y);
+                //Debug.Log(change.y);
                 lastIndex += (int)(change.y * scaleYMultiply);
                 if (lastIndex < 2) lastIndex = 2;
                 if (lastIndex > 40) lastIndex = 40;

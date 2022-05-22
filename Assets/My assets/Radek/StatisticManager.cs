@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StatisticManager : MonoBehaviour
 {
-    private float hp=100, mp=100;
-    private float maxHP = 100, maxMP=100;
+    public float hp=100, mp=100;
+    public float maxHP = 100, maxMP=100;
     //str - increase melee damage
     //vitality - increase max hp
     //agility - increase ranged damage (bows)
@@ -87,7 +87,7 @@ public class StatisticManager : MonoBehaviour
         }
     }
 
-    private void CheckBaseStats()
+    public void CheckBaseStats()
     {
         if (hp > maxHP) hp = maxHP;
         if (mp > maxMP) mp = maxMP;

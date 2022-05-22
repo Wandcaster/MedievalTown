@@ -24,9 +24,10 @@ public class SpellController : MonoBehaviour
   
     public void choosespell(GestureCompletionData gesturecompletiondata)
     {
+        Debug.Log("Rozpoznano Gest:"+gesturecompletiondata.gestureName);
         if (wand.interactable != null && wand.interactable.attachedToHand != null)
         {
-            if (gesturecompletiondata.similarity > 0.5f)
+            if (gesturecompletiondata.similarity > 0.1f)
             {
                 if (spells.TryGetValue(gesturecompletiondata.gestureName, out value))
                 {

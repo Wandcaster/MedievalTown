@@ -66,7 +66,7 @@ public class BulletSpell : Spell,IWandSpell
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<EnemyController>()!=null)other.GetComponent<EnemyController>().currentHealth -= 10;
+        if(other.GetComponent<EnemyController>()!=null)other.GetComponent<EnemyController>().CurrentHealth -= 10;
     }
 
 

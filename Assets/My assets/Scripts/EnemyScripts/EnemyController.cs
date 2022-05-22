@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent navMesh;
     [SerializeField]
     private Transform eyesPosition;
+    [SerializeField]
+    private Transform PlayerHead;
 
     private bool seePlayer;
     private bool playerInAttackRange;
@@ -31,7 +33,8 @@ public class EnemyController : MonoBehaviour
 
 
     [SerializeField]
-    public float currentHealth;
+    private float currentHealth;
+    public float CurrentHealth { get { return currentHealth; } set {currentHealth = value; GetHit(); } }
     [SerializeField] public float currentPhysicalDMG;
     [SerializeField] public float currentMagicalDMG;
     [SerializeField] public float currentPhysicalArmor;
@@ -42,7 +45,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = Player.instance.gameObject.transform.GetComponentInChildren<BodyCollider>().transform;
+        playerTransform = Player.instance.transform.Find("SteamVRObjects").Find("VRCamera").Find("FollowHead").Find("HeadCollider");
         Debug.Log(playerTransform);
         navMesh = GetComponent<NavMeshAgent>();
         navMesh.stoppingDistance = enemyModel.stoppingDistance;
@@ -81,8 +84,8 @@ public class EnemyController : MonoBehaviour
             Debug.Log("wykryto colider gracza");
             //wykryto collider gracza
             RaycastHit hit = new RaycastHit();
-            Physics.Raycast(eyesPosition.position, playerTransform.position+ new Vector3(0,0.5F,0) - eyesPosition.position, out hit);
-            Debug.DrawRay(eyesPosition.position, playerTransform.position + new Vector3(0, 0.5F, 0) - eyesPosition.position,Color.red,detectionRadius+5);
+            Physics.Raycast(eyesPosition.position, playerTransform.position - eyesPosition.position, out hit);
+            Debug.DrawRay(eyesPosition.position, playerTransform.position  - eyesPosition.position,Color.red,detectionRadius+5);
             if (hit.collider == null) return;
             if (hit.collider.gameObject.CompareTag("Player"))
             {
@@ -129,10 +132,7 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("playerInAttackRange",playerInAttackRange);
         animator.SetBool("playerInStoppingDistance", playerInStoppingDistance);
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    animator.SetTrigger("GetHit");
-    //}
+
     public void GetHit()
     {
         animator.SetTrigger("GetHit");

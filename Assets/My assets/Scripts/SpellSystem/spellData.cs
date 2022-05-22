@@ -8,4 +8,5 @@ public class spellData :ScriptableObject
     public  string gestureName;
     public  int cooldownTime;
     public float spellDamage;
+    public float manaCost;
 }
