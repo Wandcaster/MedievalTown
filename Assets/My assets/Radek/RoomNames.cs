@@ -13,6 +13,8 @@ public class RoomNames
     private string deadEndRooms;
     private string restRooms;
     private string generatedRoom;
+    private string checkArea;
+    private string area;
 
     public RoomNames()
     {
@@ -26,6 +28,8 @@ public class RoomNames
         generatedRoom = "GeneratedRoom";
         restRooms = "RestRooms";
         generatedRoom = "GeneratedRoom";
+        checkArea = "CheckArea";
+        area = "Area";
     }
     public string GetRoom() { return room; }
     public string GetDescendingAreas() { return descendingAreas; }
@@ -37,6 +41,6 @@ public class RoomNames
     public string GetRestRooms() { return restRooms; }
 
     public string GetGeneratedRoom() { return generatedRoom; }
-    
-
+    public string GetCheckArea() { return checkArea; }
+    public string GetArea() { return area; }
 }
