@@ -78,6 +78,7 @@ public class DungeonManager : MonoBehaviour
 
     private void GenerateDungeon(GameObject transition, int remainingLength, bool hasBossRoom, GameObject room, bool clearParent)
     {
+
             //punkt przy³¹czenia, gdzie ma siê wygenerowaæ pokój
             Vector3 transitionPos = transition.transform.position;
             //liczba generowanych pokoi, bez mo¿liwoœci przy³¹czenia/generowania pokoju prowadz¹cego w dó³
@@ -107,12 +108,13 @@ public class DungeonManager : MonoBehaviour
         System.Random rand = new System.Random();
         int chanceToSpawnDescendingAreaButLocal = chanceToSpawnDescendingArea;
         bool descend = false;
+        bool end = false;
 
         do
         {
             try
             {
-
+                availableRooms = null;
                 float randomFloat = (float)rand.NextDouble();//[0;1]
                 float chances = (float)1 / chanceToSpawnDescendingAreaButLocal;
                 remainingLength--;
@@ -148,14 +150,15 @@ public class DungeonManager : MonoBehaviour
                     {
                         //restRoom and bossRoom
                         availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetRestRooms()).gameObject, transition, transitionPos);
-
+                        transitionPos = AppendRoom(availableRooms, transition, i, transitionPos);
+                        availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetFinalRooms()).gameObject, transition, transitionPos);
                     }
                     else
                     {
                         //deadEndRoom
                         availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetDeadEndRooms()).gameObject, transition, transitionPos);
                     }
-                    break;
+                    end = true;
                 }
 
                 if (availableRooms.Count != 0)
@@ -176,6 +179,7 @@ public class DungeonManager : MonoBehaviour
                         //pokoj z boss room'em ma priorytet - czyli tam, gdzie jest dalej w lochu
                         if (length1 >= length2)
                         {
+                            
                             GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
                             GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
                             remainingLength = 0;
@@ -189,12 +193,8 @@ public class DungeonManager : MonoBehaviour
                         }
                         break;
                     }
-                    else if (hasBossRoom)
-                    {
-                        availableRooms = GetAvailableRooms(room.transform.parent.Find(roomNames.GetFinalRooms()).gameObject, transition, transitionPos);
-                        transitionPos = AppendRoom(availableRooms, transition, i, transitionPos);
 
-                    }
+                    if (end) break;
                 }
                 else
                 {
@@ -214,7 +214,7 @@ public class DungeonManager : MonoBehaviour
             {
                 Debug.Log(e);
             }
-        } while (remainingLength != 0);
+        } while (remainingLength > 0);
 
     }
 
@@ -268,8 +268,16 @@ public class DungeonManager : MonoBehaviour
             parent.transform);
         
         obj.SetActive(true);
+
+
+        if(CheckRoom(obj, transitionPos, parent) == false)
+        {
+            Debug.Log("ten pokoj tu nie moze byc");
+        }
+
         obj.transform.Find("Walls").gameObject.SetActive(true);
         obj.transform.Find("POI").gameObject.SetActive(true);
+
         obj.name = "GeneratedRoom" + generatedRoomID;
         Vector3 transitionOffset = obj.transform.position - obj.transform.Find("Transition1").transform.position;
 
@@ -315,6 +323,7 @@ public class DungeonManager : MonoBehaviour
             if (checkArea.transform.GetChild(i).GetComponent<CheckArea>().SafeToPlace() == false)
             { 
                 output = false;
+                Debug.Log("not safe to place");
                 break;
             }
         }
