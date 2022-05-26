@@ -14,19 +14,6 @@ public class DungeonManager : MonoBehaviour
     private int numberOfDeadEndRooms;
     private RoomNames roomNames;
 
-    //Serialize it later in GenerateDungeon.cs; number of rooms where there's 0% to generate descendingRoom
-    //currently Initiated in Awake()
-    private int roomsWithoutDescendingArea;
-    private int chanceToSpawnDescendingArea;//1/n.... later n--;
-
-    //Delete it when you serialize it's contents in GenerateDungeon.cs
-    private void Awake()
-    {
-        roomsWithoutDescendingArea = 3;
-        chanceToSpawnDescendingArea = 5;
-    }
-
-
     public int GetRooms() { return numberOfRooms; }
 
     public int GetRestRooms() { return numberOfRestRooms; }
@@ -76,7 +63,7 @@ public class DungeonManager : MonoBehaviour
     }
     
 
-    private void GenerateDungeon(GameObject transition, int remainingLength, bool hasBossRoom, GameObject room, bool clearParent)
+    private void GenerateDungeon(GameObject transition, int remainingLength, bool hasBossRoom, GameObject room, int roomsWithoutDescendingArea, int chanceToSpawnDescendingArea)
     {
 
             //punkt przy³¹czenia, gdzie ma siê wygenerowaæ pokój
@@ -173,21 +160,36 @@ public class DungeonManager : MonoBehaviour
                         if (remainingLength == 2) { length1 = 1; length2 = 1; }
                         else
                         {
-                            length1 = UnityEngine.Random.Range(1, remainingLength - 1);
-                            length2 = remainingLength - length1;
-                        }
+                            //length1 = UnityEngine.Random.Range(1, remainingLength - 1);
+                            //length2 = remainingLength - length1;
+                            if (UnityEngine.Random.Range(0.0f, 1.0f) >= 0.5f)
+                            {
+
+                                length1 = UnityEngine.Random.Range(1, roomsToGenerateWithoutDescendingArea + 1);
+                                length2 = remainingLength - length1;
+                            }
+                            else
+                            {
+
+                                length2 = UnityEngine.Random.Range(1, roomsToGenerateWithoutDescendingArea + 1);
+                                length1 = remainingLength - length2;
+                            }
+
+
+
+                            }
                         //pokoj z boss room'em ma priorytet - czyli tam, gdzie jest dalej w lochu
                         if (length1 >= length2)
                         {
                             
-                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
-                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, roomsWithoutDescendingArea, chanceToSpawnDescendingArea);
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, roomsWithoutDescendingArea, chanceToSpawnDescendingArea);
                             remainingLength = 0;
                         }
                         else
                         {
-                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, false);
-                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, false);
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition3()).gameObject, length2, hasBossRoom && !(length1 >= length2), room, roomsWithoutDescendingArea, chanceToSpawnDescendingArea);
+                            GenerateDungeon(tmp.transform.Find(roomNames.GetTransition2()).gameObject, length1, hasBossRoom && length1 >= length2, room, roomsWithoutDescendingArea, chanceToSpawnDescendingArea);
                             remainingLength = 0;
 
                         }
@@ -220,16 +222,16 @@ public class DungeonManager : MonoBehaviour
 
 
 
-    private void GenerateDung(GameObject transition, DungeonGenerateChances chances)
+    private void GenerateDung(GameObject transition, DungeonGenerateChances chances, int roomsWithoutDescendingArea, int chanceToSpawnDescendingArea)
     {
-        StartCoroutine(GenerateDungeon(transition, chances));
+        StartCoroutine(GenerateDungeon(transition, chances, roomsWithoutDescendingArea, chanceToSpawnDescendingArea));
     }
 
-    IEnumerator GenerateDungeon(GameObject transition, DungeonGenerateChances chances)
+    IEnumerator GenerateDungeon(GameObject transition, DungeonGenerateChances chances, int roomsWithoutDescendingArea, int chanceToSpawnDescendingArea)
     {
         ClearChild(transition);
         yield return new WaitForSeconds(1);//bez tego ClearChild i GenerateDungeon lec¹ równolegle
-        GenerateDungeon(transition, GenerateLength(chances), true, gameObject.transform.Find("Presets").Find("Rooms").gameObject, true);
+        GenerateDungeon(transition, GenerateLength(chances), true, gameObject.transform.Find("Presets").Find("Rooms").gameObject, roomsWithoutDescendingArea, chanceToSpawnDescendingArea);
     }
 
 

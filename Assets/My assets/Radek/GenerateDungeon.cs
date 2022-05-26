@@ -26,9 +26,16 @@ public class GenerateDungeon : MonoBehaviour
     [SerializeField] int bigDungeonSizeMin;
     [SerializeField] int bigDungeonSizeMax;
 
+    [Tooltip("Iloœæ pokoj z gameObject'u Rooms bez mo¿liwoœci wygenerowania pokoju prowadz¹cego w dó³")]
+    [SerializeField] int roomsWithoutDescendingArea;
+
+    [Tooltip("Szansa na pojawienie siê pokoju prowadz¹cego w dó³ - wzór: 1/n;n--")]
+    [SerializeField] int chanceToSpawnDescendingArea;
 
 
-    public delegate void generate(GameObject transition, DungeonGenerateChances rng);
+
+    public delegate void generate(GameObject transition, DungeonGenerateChances rng,
+        int roomsWithoutDescendingArea, int chanceToSpawnDescendingArea);
     public event generate generateDungeon;
     private void Update()
     {
@@ -40,10 +47,9 @@ public class GenerateDungeon : MonoBehaviour
                 smallDungeonSizeMin, smallDungeonSizeMax+1, 
                 mediumDungeonSizeMin, mediumDungeonSizeMax+1,
                 bigDungeonSizeMin, bigDungeonSizeMax+1,
-                smallDungeonChances, mediumDungeonChances
-                
-                
-                ));
+                smallDungeonChances, mediumDungeonChances),
+                roomsWithoutDescendingArea, chanceToSpawnDescendingArea
+                );
         }
     }
 
