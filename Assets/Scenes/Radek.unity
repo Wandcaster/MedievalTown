@@ -1425,6 +1425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 5, y: 2, z: 5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &124500375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,6 +2382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 5, y: 2, z: 5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &316864532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,6 +2554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 5, y: 2, z: 5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &334134108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5734,6 +5737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 5, y: 2, z: 5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &978777933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5972,6 +5976,7 @@ GameObject:
   - component: {fileID: 987085016}
   - component: {fileID: 987085015}
   - component: {fileID: 987085014}
+  - component: {fileID: 987085017}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -6056,6 +6061,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987085012}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &987085017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987085012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!1001 &992502429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6584,6 +6618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1074772330}
   - component: {fileID: 1074772329}
+  - component: {fileID: 1074772331}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -6618,6 +6653,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074772331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074772328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5120fccd6fd2234e8a8f1f4959cb8cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaces: []
 --- !u!1001 &1081099770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7733,6 +7781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: -7.5, y: -1.5, z: 0}
   halfExtents: {x: 2.5, y: 4.5, z: 0.5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1292250298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8677,6 +8726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 5, y: 2, z: 5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1479309859
 GameObject:
   m_ObjectHideFlags: 0
@@ -8994,6 +9044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 7.5, y: -1.5, z: 0}
   halfExtents: {x: 2.5, y: 4.5, z: 0.5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1543723178
 GameObject:
   m_ObjectHideFlags: 0
@@ -9132,6 +9183,7 @@ GameObject:
   - component: {fileID: 1550052736}
   - component: {fileID: 1550052735}
   - component: {fileID: 1550052734}
+  - component: {fileID: 1550052737}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -9216,6 +9268,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550052732}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1550052737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550052732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &1560513595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 125964, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
@@ -10493,6 +10574,7 @@ GameObject:
   - component: {fileID: 1782619283}
   - component: {fileID: 1782619282}
   - component: {fileID: 1782619281}
+  - component: {fileID: 1782619284}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -10577,6 +10659,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782619279}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1782619284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782619279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!1001 &1786907659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11834,6 +11945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 10, y: 2, z: 10}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2003419530
 GameObject:
   m_ObjectHideFlags: 0
@@ -12396,6 +12508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 2, z: 0}
   halfExtents: {x: 5, y: 2, z: 5}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2118468032
 GameObject:
   m_ObjectHideFlags: 0

@@ -218,6 +218,7 @@ public class DungeonManager : MonoBehaviour
             }
         } while (remainingLength > 0);
 
+        GetComponent<NavigationBaker>().BakeSurface();
     }
 
 
