@@ -13,7 +13,7 @@ public class CheckArea : MonoBehaviour
     {
         //Debug.Log(gameObject.transform.position + "|" + middle + "|" + halfExtents);
 
-        return !Physics.CheckBox(gameObject.transform.position, halfExtents - new Vector3(0.1f, 0.01f, 0.1f));
+        return !Physics.CheckBox(gameObject.transform.position, halfExtents - new Vector3(0.15f, 0.01f, 0.15f));
     }
 
 }
