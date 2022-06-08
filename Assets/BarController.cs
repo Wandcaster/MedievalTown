@@ -17,7 +17,7 @@ public class BarController : MonoBehaviour
     }
     void Update()
     {
-        hp.fillAmount = Mathf.Clamp(statisticManager.hp / statisticManager.maxHP, 0, 1f);
-        mp.fillAmount = Mathf.Clamp(statisticManager.mp / statisticManager.maxMP, 0, 1f);
+        hp.fillAmount = Mathf.Clamp(statisticManager.hp / statisticManager.MaxHP(), 0, 1f);
+        mp.fillAmount = Mathf.Clamp(statisticManager.mp / statisticManager.MaxMP(), 0, 1f);
     }
 }
