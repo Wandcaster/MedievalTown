@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] public float currentPhysicalArmor;
     [SerializeField] public float currentMagicalArmor;
 
+    [SerializeField] public int experienceOnDeath;
+    [SerializeField] public LootData []drop;
 
 
     // Start is called before the first frame update
@@ -155,9 +158,20 @@ public class EnemyController : MonoBehaviour
     }
     public IEnumerator setDeactive()
     {
+        GivePlayerExperience();
+        GivePlayerDrop();
         yield return new WaitForSeconds(5);
         OnDeath.Invoke(enemyModel.prefab,this);
         yield return 0;
     }
 
+    private void GivePlayerDrop()
+    {
+        
+    }
+
+    private void GivePlayerExperience()
+    {
+        Player.instance.GetComponent<StatisticManager>().AddExp(experienceOnDeath);
+    }
 }
