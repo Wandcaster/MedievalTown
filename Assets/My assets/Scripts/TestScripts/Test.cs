@@ -4,40 +4,18 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField]
-    private int force;
-    public GameObject prefab;
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        Instantiate(prefab, transform.position+ new Vector3(3.3F,0,0), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(-3.3F, 0, 0), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(0, 0, 3.3F), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(0, 0, -3.3F), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(3.3F, 0, 3.3F), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(-3.3F, 0, -3.3F), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(-3.3F, 0, 3.3F), transform.rotation);
-        Instantiate(prefab, transform.position + new Vector3(3.3F, 0, -3.3F), transform.rotation);
-    }
-
-    private IEnumerator DisableCollider()
-    {
-        GetComponent<MeshCollider>().enabled = false;
-        yield return new WaitForSeconds(0.5F);
-        GetComponent<MeshCollider>().enabled = true;
-    }
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
+        Vector3 direction;
+        float distance;
+        bool check = true;
+        foreach (var item in gameObject.transform.parent.GetComponentsInChildren<Collider>())
         {
+            Debug.Log(item.name);
+            check = Physics.ComputePenetration(gameObject.GetComponent<Collider>(), gameObject.transform.position, gameObject.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
 
         }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
 
-        }        
     }
 
 }
