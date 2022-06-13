@@ -103,14 +103,22 @@ public class PlaceController : MonoBehaviour
             SetRandomOrientation(temp, copy);
 
             List<Collider> colliders = new List<Collider>(temp.transform.parent.GetComponentsInChildren<Collider>());
-            colliders.Remove(temp.GetComponent<Collider>());
+            foreach (var item in temp.GetComponentsInChildren<Collider>())
+            {
+                colliders.Remove(item);
+            }
+            foreach (var item in GetComponentsInChildren<Collider>())
+            {
+                colliders.Remove(item);
+            }
+            check = false;
             foreach (var item in colliders)
             {
                 if(!CanCollideWithWalls)
                 {
                     if (item.CompareTag("ObjectToPlace")||item.CompareTag("Wall"))
                     {
-                        check = false;
+                        //check = false;
                         check = Physics.ComputePenetration(temp.GetComponent<Collider>(), temp.transform.position, temp.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
                         if (check) break;
                     }
@@ -119,7 +127,7 @@ public class PlaceController : MonoBehaviour
                 {
                     if(item.CompareTag("ObjectToPlace"))
                     {
-                        check = false;
+                        //check = false;
                         check = Physics.ComputePenetration(temp.GetComponent<Collider>(), temp.transform.position, temp.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
                         if (check) break;
                     }

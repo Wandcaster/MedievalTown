@@ -218,7 +218,6 @@ public class DungeonManager : MonoBehaviour
             }
         } while (remainingLength > 0);
 
-        GetComponent<NavigationBaker>().BakeSurface();
     }
 
 
@@ -233,6 +232,7 @@ public class DungeonManager : MonoBehaviour
         ClearChild(transition);
         yield return new WaitForSeconds(1);//bez tego ClearChild i GenerateDungeon lec¹ równolegle
         GenerateDungeon(transition, GenerateLength(chances), true, gameObject.transform.Find("Presets").Find("Rooms").gameObject, roomsWithoutDescendingArea, chanceToSpawnDescendingArea);
+        GetComponent<NavigationBaker>().BakeSurface();
     }
 
 

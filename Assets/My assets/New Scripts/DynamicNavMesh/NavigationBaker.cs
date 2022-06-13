@@ -11,11 +11,21 @@ public class NavigationBaker : MonoBehaviour
     // Use this for initialization
     public void BakeSurface()
     {
-        surfaces = new List<NavMeshSurface>(FindObjectsOfType<NavMeshSurface>());
-        foreach (var item in surfaces)
+        GameObject[] POI = GameObject.FindGameObjectsWithTag("POI");
+        foreach (var item in POI)
+        {
+            item.SetActive(false);
+        }
+
+        foreach (var item in FindObjectsOfType<NavMeshSurface>())
         {
             item.BuildNavMesh();
-        }           
+        }
+
+        foreach (var item in POI)
+        {
+            item.SetActive(true);
+        }
     }
 
 }
