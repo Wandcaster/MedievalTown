@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 3112175546241218910}
   m_Layer: 0
   m_Name: Plane.006
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 3112175547780013025}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 3112175546055341174}
   m_Layer: 0
   m_Name: Plane.007
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 3112175547516743661}
   m_Layer: 0
   m_Name: Plane.004
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2031,8 +2031,12 @@ PrefabInstance:
       objectReference: {fileID: 7400000, guid: 790ae5eaa6c5d4342b8ee2347b8f8120, type: 2}
     - target: {fileID: 3377992305806638534, guid: 9873a4022c1911d419356438c22573eb, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3377992305806638534, guid: 9873a4022c1911d419356438c22573eb, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 790ae5eaa6c5d4342b8ee2347b8f8120, type: 2}
     - target: {fileID: 3377992305806638534, guid: 9873a4022c1911d419356438c22573eb, type: 3}
       propertyPath: m_Animations.Array.data[1]
       value: 

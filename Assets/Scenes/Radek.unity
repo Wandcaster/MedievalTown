@@ -21377,6 +21377,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2862134399242498396, guid: 8914943ea03421849a739c19910c2804, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2878296016318504433, guid: 8914943ea03421849a739c19910c2804, type: 3}
       propertyPath: m_Name
       value: BossRoom
@@ -21453,6 +21457,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5068360351132403776, guid: 8914943ea03421849a739c19910c2804, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411520346632041922, guid: 8914943ea03421849a739c19910c2804, type: 3}
+      propertyPath: m_Range
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5500356381317476154, guid: 8914943ea03421849a739c19910c2804, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -21469,6 +21481,10 @@ PrefabInstance:
       propertyPath: m_NavMeshData
       value: 
       objectReference: {fileID: 23800000, guid: 7aedad0140ed1b54c8e3195ba774e51b, type: 2}
+    - target: {fileID: 7305130173188419487, guid: 8914943ea03421849a739c19910c2804, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7387079911499390513, guid: 8914943ea03421849a739c19910c2804, type: 3}
       propertyPath: m_Layer
       value: 11
