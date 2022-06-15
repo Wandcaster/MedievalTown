@@ -21029,6 +21029,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 4480413892978943392, guid: da009c192222633468f6ed9f282ba03a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4795059941657690924, guid: da009c192222633468f6ed9f282ba03a, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -21296,6 +21300,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 6912129969301704806, guid: 2c9d4a24a5c3d49478720877c45569d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7123719967385535291, guid: 2c9d4a24a5c3d49478720877c45569d8, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -21497,6 +21505,10 @@ PrefabInstance:
     - target: {fileID: 2577878877561890175, guid: 8d49b8e43bc51aa4883debcbd4930bc9, type: 3}
       propertyPath: m_Name
       value: TestRoom_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2873591220123588491, guid: 8d49b8e43bc51aa4883debcbd4930bc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2922175913405677509, guid: 8d49b8e43bc51aa4883debcbd4930bc9, type: 3}
       propertyPath: m_RootOrder
@@ -21889,6 +21901,10 @@ PrefabInstance:
     - target: {fileID: 3978671488856835660, guid: ba5f624be51db5147bcce614785d6c91, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034289432060714546, guid: ba5f624be51db5147bcce614785d6c91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4268441209377531139, guid: ba5f624be51db5147bcce614785d6c91, type: 3}
       propertyPath: m_Layer

@@ -120,7 +120,7 @@ public class PlaceController : MonoBehaviour
                     if (item.CompareTag("ObjectToPlace")||item.CompareTag("Wall"))
                     {
                         //check = false;
-                        check = Physics.ComputePenetration(temp.GetComponent<Collider>(), temp.transform.position, temp.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
+                        if (temp.GetComponent<Collider>() != null) check = Physics.ComputePenetration(temp.GetComponent<Collider>(), temp.transform.position, temp.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
                         if (check) break;
                     }
                 }
@@ -129,7 +129,7 @@ public class PlaceController : MonoBehaviour
                     if(item.CompareTag("ObjectToPlace"))
                     {
                         //check = false;
-                        check = Physics.ComputePenetration(temp.GetComponent<Collider>(), temp.transform.position, temp.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
+                        if(temp.GetComponent<Collider>() != null) check = Physics.ComputePenetration(temp.GetComponent<Collider>(), temp.transform.position, temp.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
                         if (check) break;
                     }
                 }
