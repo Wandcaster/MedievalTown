@@ -74,6 +74,7 @@ public class PlaceController : MonoBehaviour
 
     void OnEnable()
     {
+        if (Variants == null) Variants = new List<GameObject>();
         gameObject.GetComponent<PlaceController>().enabled = false;
         if (UnityEngine.Random.Range(0, 100) > chanceToRespawn)
         {

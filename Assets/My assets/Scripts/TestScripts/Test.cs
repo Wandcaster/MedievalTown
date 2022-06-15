@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Test : MonoBehaviour
 {
-    private void OnEnable()
+    [SerializeField]
+    Quaternion rotation;
+    [SerializeField]
+    Vector3 positionOffset;
+    private void Start()
     {
-        Vector3 direction;
-        float distance;
-        bool check = true;
-        foreach (var item in gameObject.transform.parent.GetComponentsInChildren<Collider>())
-        {
-            Debug.Log(item.name);
-            check = Physics.ComputePenetration(gameObject.GetComponent<Collider>(), gameObject.transform.position, gameObject.transform.rotation, item, item.transform.position, item.transform.rotation, out direction, out distance);
-
-        }
-
+    }
+    private void Update()
+    {
+        transform.position = Player.instance.feetPositionGuess + positionOffset;
+        transform.rotation = Quaternion.Euler(0, transform.parent.rotation.eulerAngles.y+90, 0);
     }
 
 }

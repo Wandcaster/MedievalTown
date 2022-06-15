@@ -48,7 +48,14 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = Player.instance.transform.Find("SteamVRObjects").Find("VRCamera").Find("FollowHead").Find("HeadCollider");
+        if (Player.instance.transform.Find("SteamVRObjects").gameObject.activeSelf == false)
+        {
+            playerTransform = Player.instance.transform.Find("NoSteamVRFallbackObjects").Find("FallbackObjects").Find("FollowHead").Find("HeadCollider");
+        }
+        else
+        {
+            playerTransform = Player.instance.transform.Find("SteamVRObjects").Find("VRCamera").Find("FollowHead").Find("HeadCollider");
+        }
         Debug.Log(playerTransform);
         navMesh = GetComponent<NavMeshAgent>();
         navMesh.stoppingDistance = enemyModel.stoppingDistance;
@@ -167,7 +174,10 @@ public class EnemyController : MonoBehaviour
 
     private void GivePlayerDrop()
     {
-        
+        foreach (var item in drop)
+        {
+            item.Generate(transform);
+        } 
     }
 
     private void GivePlayerExperience()
