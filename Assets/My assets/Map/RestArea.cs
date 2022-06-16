@@ -17,5 +17,14 @@ public class RestArea : MonoBehaviour
     {
         return healMP / Time.deltaTime;
     }
-
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<StatisticManager>() != null)
+        {
+            StatisticManager manager = other.GetComponent<StatisticManager>();
+            manager.hp += calculateHP();
+            manager.mp += calculateMP();
+            manager.CheckBaseStats();
+        }
+    }
 }

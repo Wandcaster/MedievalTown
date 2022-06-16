@@ -23,7 +23,8 @@ public class EnemyController : MonoBehaviour
     private bool playerInAttackRange;
     private bool playerInStoppingDistance;
 
-    private int waitTime=5;
+    [SerializeField]
+    private int waitTime=1;
 
     private Animator animator;
     private float detectionRadius { get { return enemyModel.detectionRadius; } }

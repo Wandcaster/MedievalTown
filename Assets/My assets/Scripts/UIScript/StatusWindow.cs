@@ -20,7 +20,7 @@ public class StatusWindow : MonoBehaviour
    public void RefreshActiveQuestList()
     {
         textMesh.text = "";
-        foreach (var quest in QuestManager.Instance.activeQuestList)
+        foreach (var quest in QuestManager.Instance.activeQuestList)    
         {
             textMesh.text += quest.name +" "+quest.progress+ System.Environment.NewLine;
         }

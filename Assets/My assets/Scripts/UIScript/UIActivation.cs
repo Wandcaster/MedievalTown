@@ -40,7 +40,6 @@ public class UIActivation : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("Z" + hand.transform.rotation.eulerAngles.z);
             yield return new WaitForSeconds(1);
             if (hand.transform.rotation.eulerAngles.z > 260 && hand.transform.rotation.eulerAngles.z < 310)
             {

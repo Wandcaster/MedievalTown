@@ -37,20 +37,21 @@ public class GenerateDungeon : MonoBehaviour
     public delegate void generate(GameObject transition, DungeonGenerateChances rng,
         int roomsWithoutDescendingArea, int chanceToSpawnDescendingArea);
     public event generate generateDungeon;
-    private void Update()
+    private void Start()
     {
-        //GenerateDungeon(transition);
-        if (Input.GetKeyUp(KeyCode.Z))
-        {
-
-            generateDungeon(transition, new DungeonGenerateChances(
-                smallDungeonSizeMin, smallDungeonSizeMax+1, 
-                mediumDungeonSizeMin, mediumDungeonSizeMax+1,
-                bigDungeonSizeMin, bigDungeonSizeMax+1,
-                smallDungeonChances, mediumDungeonChances),
-                roomsWithoutDescendingArea, chanceToSpawnDescendingArea
-                );
-        }
+        StartCoroutine(Generate());
+    }
+    private IEnumerator Generate()
+    {
+        yield return new WaitForSeconds(1);
+        generateDungeon(transition, new DungeonGenerateChances(
+            smallDungeonSizeMin, smallDungeonSizeMax + 1,
+            mediumDungeonSizeMin, mediumDungeonSizeMax + 1,
+            bigDungeonSizeMin, bigDungeonSizeMax + 1,
+            smallDungeonChances, mediumDungeonChances),
+            roomsWithoutDescendingArea, chanceToSpawnDescendingArea
+            );
+        yield return true;
     }
 
 

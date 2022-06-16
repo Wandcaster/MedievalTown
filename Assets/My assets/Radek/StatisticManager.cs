@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class StatisticManager : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class StatisticManager : MonoBehaviour
     //wisdom - increase magical armor efficiency ; armor_magical*wisdom_multiplayer; increase max mp
     private float strength=10, vitality=10, agility=10, intelligence=10, sturdiness=10, wisdom=10;
     private Training currentTraining;
-
+    [SerializeField]
+    private smoothLocomotion smoothLocomotion;
+    [SerializeField]
+    private GameObject UIDie;
     public float MaxHP()
     {
         return 10 * vitality;
@@ -76,22 +80,11 @@ public class StatisticManager : MonoBehaviour
     {
         if (hp <= 0)
         {
-            //gameOver();
-
+            Die();
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<RestArea>() != null)
-        {
-            RestArea tmp = other.GetComponent<RestArea>();
-            hp += tmp.calculateHP();
-            mp += tmp.calculateMP();
-            CheckBaseStats();
-            Debug.Log("HP" + hp);
-        }
-    }
+    
 
     public void CheckBaseStats()
     {
@@ -101,7 +94,7 @@ public class StatisticManager : MonoBehaviour
     }
     public void DamageTaken(float physicalDMG, float magicalDMG)
     {
-        hp -= physicalDMG - magicalDMG;
+        hp -= physicalDMG + magicalDMG;
         Debug.Log("HP gracza " + hp);
     }
 
@@ -142,6 +135,11 @@ public class StatisticManager : MonoBehaviour
         sturdiness += 2;
         wisdom += 2;
 
+    }
+   public void  Die()
+    {
+        smoothLocomotion.enabled = false;
+        UIDie.SetActive(true);
     }
 
     
