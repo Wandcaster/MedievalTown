@@ -18,8 +18,9 @@ public class UIActivation : MonoBehaviour
 
     private void Start()
     {
-        hand = Player.instance.hands[0];
-        StartCoroutine("CheckGesture");
+        hand = Player.instance.hands[1];
+        Debug.Log(Player.instance.hands[1].name);
+        StartCoroutine(CheckGesture());
     }
     public IEnumerator WaitAndShowGUI()
     {
@@ -37,10 +38,11 @@ public class UIActivation : MonoBehaviour
 
     public IEnumerator CheckGesture()
     {
-        while(true)
+        while (true)
         {
+            Debug.Log("Z" + hand.transform.rotation.eulerAngles.z);
             yield return new WaitForSeconds(1);
-            if (hand.transform.rotation.eulerAngles.z > 70 && hand.transform.rotation.eulerAngles.z < 100)
+            if (hand.transform.rotation.eulerAngles.z > 260 && hand.transform.rotation.eulerAngles.z < 310)
             {
                 if (canvas.gameObject.activeSelf == false)
                 {
