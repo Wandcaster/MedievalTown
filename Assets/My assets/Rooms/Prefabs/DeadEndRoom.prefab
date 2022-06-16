@@ -926,7 +926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 152048f6641c941469807ea98fe043fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.1092243
+      value: -4.109224
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 152048f6641c941469807ea98fe043fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1034,6 +1034,9 @@ MonoBehaviour:
   Orientations:
   - position: {x: -1.382, y: 1.48, z: -5.217}
     rotation: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+  - position: {x: -1.241938, y: 0.177, z: -4.1092243}
+    rotation: {x: 90, y: 245.86319, z: 0}
     Scale: {x: 1, y: 1, z: 1}
   gizmosRadius: 0.5
   gizmosColor: {r: 0.42566893, g: 0.754717, b: 0.40939838, a: 1}
