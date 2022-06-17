@@ -33,7 +33,7 @@ public void CastSpell(Wand wand)
             temp = Instantiate(gameObject, tip.transform.position, Quaternion.Euler(tip.transform.eulerAngles));
             temp.transform.localPosition += spellOffset;
             temp.transform.rotation *= Quaternion.Euler(rotationOffset);
-            temp.transform.SetParent(null);
+            temp.transform.SetParent(tip.transform);
             temp.SetActive(true);
             Destroy(temp, spellData.lifeTime);
         }

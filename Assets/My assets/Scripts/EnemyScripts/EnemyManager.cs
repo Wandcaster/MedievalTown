@@ -22,6 +22,8 @@ public class EnemyManager : MonoBehaviour
         {
             _instance = this;
         }
+        Object.DontDestroyOnLoad(this);
+
     }
     public void Respawn(int enemyCount, int respawnFrequency, Vector3 respawnPosition, float respawnRadius, GameObject enemyPrefab)
     {
@@ -76,7 +78,7 @@ public class EnemyManager : MonoBehaviour
         {
             for(int enemyCount=0; enemyCount<enemyList[i].maxCount;enemyCount++)
             {
-                tempEnemy = Instantiate(enemyList[i].enemyPrefab, transform.position, Quaternion.identity, null);
+                tempEnemy = Instantiate(enemyList[i].enemyPrefab, transform.position, Quaternion.identity, transform);
                 tempEnemy.SetActive(false);
                 enemyList[i].deactiveEnemyList.Add(tempEnemy.GetComponent<EnemyController>()) ;
             }

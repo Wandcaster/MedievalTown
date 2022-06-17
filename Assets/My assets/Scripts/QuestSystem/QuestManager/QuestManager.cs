@@ -23,6 +23,7 @@ public class QuestManager : MonoBehaviour
         {
             _instance = this;
         }
+        Object.DontDestroyOnLoad(this);
     }
     public void ActiveQuest(KillEnemyQuest quest)
     {

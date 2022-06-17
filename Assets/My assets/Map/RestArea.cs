@@ -11,11 +11,11 @@ public class RestArea : MonoBehaviour
 
     public float calculateHP()
     {
-        return healHP / Time.deltaTime;
+        return healHP * Time.deltaTime;
     }
     public float calculateMP()
     {
-        return healMP / Time.deltaTime;
+        return healMP * Time.deltaTime;
     }
     private void OnTriggerStay(Collider other)
     {

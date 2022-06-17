@@ -1,10 +1,19 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
 [CanEditMultipleObjects]
+#endif
+
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(PlaceController))]
+#endif
+#if UNITY_EDITOR
+
 public class PlaceControllerEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -25,19 +34,25 @@ public class PlaceControllerEditor : Editor
         }
     }
 }
+#endif
+
 [AttributeUsage(AttributeTargets.Field)]
 public class DrawIF : PropertyAttribute
 {
+
     public string PropertyName;
     public DrawIF(string PropertyName)
     {     
         this.PropertyName = PropertyName;
     }
 }
+
+#if UNITY_EDITOR
+
 [CustomPropertyDrawer(typeof(DrawIF))]
 public class RangeDrawer : PropertyDrawer
 {
-    
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         DrawIF drawIF = (DrawIF)attribute;
@@ -52,8 +67,8 @@ public class RangeDrawer : PropertyDrawer
         else return -EditorGUIUtility.standardVerticalSpacing;
     }
 
-
-
 }
+#endif
+
 
 
