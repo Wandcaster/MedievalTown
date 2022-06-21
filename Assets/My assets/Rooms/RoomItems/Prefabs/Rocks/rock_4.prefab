@@ -113,6 +113,7 @@ MonoBehaviour:
   random_Z_Scale: 0
   Z_MinScale: 0
   Z_MaxScale: 0
+  CanCollideWithWalls: 0
   Variants: []
   chanceToRespawn: 100
   minRespawnCount: 0
