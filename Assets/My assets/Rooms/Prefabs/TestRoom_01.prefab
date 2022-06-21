@@ -3445,9 +3445,7 @@ MonoBehaviour:
   Z_MinScale: 0
   Z_MaxScale: 0
   CanCollideWithWalls: 0
-  Variants:
-  - {fileID: 109816359751419088, guid: 3bf2201cde3b4174690f2b503b88479d, type: 3}
-  - {fileID: 3199683322367598811, guid: c9dddd7ebc7a705409e2cc38dbf150a3, type: 3}
+  Variants: []
   chanceToRespawn: 25
   minRespawnCount: 1
   maxRespawnCount: 2
